@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class playerControl : MonoBehaviour
 {
+    [SerializeField] int jump;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

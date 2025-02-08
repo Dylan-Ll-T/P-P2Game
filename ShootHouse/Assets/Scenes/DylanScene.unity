@@ -128,11 +128,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 431491872}
+  - component: {fileID: 431491873}
   - component: {fileID: 431491871}
   - component: {fileID: 431491870}
   - component: {fileID: 431491869}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Enemy Temp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,6 +230,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &431491873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431491868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dda6c133d316a24458817b25d184d1ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 431491870}
+  HP: 0
+  animTransSpeed: 0
+  faceTargetSpeed: 0
+  bullet: {fileID: 0}
+  shootPos: {fileID: 0}
+  shootRate: 0
 --- !u!1 &909806864
 GameObject:
   m_ObjectHideFlags: 0

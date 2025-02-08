@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour, IDamage
 {
-    [Header("Basics")]
+    [Header("--Basics--")]
     [SerializeField] Renderer model;
     //[SerializeField] NavMeshAgent agent;
     //[SerializeField] Animator anim;

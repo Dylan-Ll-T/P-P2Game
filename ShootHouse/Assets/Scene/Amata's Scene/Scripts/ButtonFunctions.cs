@@ -1,17 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonFunctions : MonoBehaviour // misspelled functions, dont let this mess me up
+public class ButtonFinctions : MonoBehaviour // misspelled functions, dont let this mess me up
 {
     public void resume()
     {
-        gamemanager.instance.stateUnpaused();
+        gamemanager.instance.stateUnpause();
     }
 
     public void restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        gamemanager.instance.stateUnpaused();
+        gamemanager.instance.stateUnpause();
     }
 
     public void quit()

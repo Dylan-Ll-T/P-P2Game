@@ -29,7 +29,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         colorOrig = model.material.color;
         gamemanager.instance.updateGameGoal(1);
     }
-
+    //T
     // Update is called once per frame
     void Update()
     {

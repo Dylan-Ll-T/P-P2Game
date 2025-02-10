@@ -13,14 +13,14 @@ public class gamemanager : MonoBehaviour
     public bool isPaused;
 
     public GameObject player;
-    public PlayerController playerScript;
+    public playerController playerScript;
 
     int goalCount;
     void Awake()
     {
         instance = this;
         player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<PlayerController>();
+        playerScript = player.GetComponent<playerController>();
 
 
     }

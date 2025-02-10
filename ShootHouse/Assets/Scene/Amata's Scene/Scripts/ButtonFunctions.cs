@@ -5,13 +5,13 @@ public class ButtonFinctions : MonoBehaviour // misspelled functions, dont let t
 {
     public void resume()
     {
-        GameManager.instance.stateUnpause();
+        gamemanager.instance.stateUnpause();
     }
 
     public void restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        GameManager.instance.stateUnpause();
+        gamemanager.instance.stateUnpause();
     }
 
     public void quit()

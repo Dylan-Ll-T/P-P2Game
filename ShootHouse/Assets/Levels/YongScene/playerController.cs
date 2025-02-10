@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerController : MonoBehaviour/*, IDamage*/
+public class playerController : MonoBehaviour, IDamage
 {
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
@@ -98,12 +98,12 @@ public class playerController : MonoBehaviour/*, IDamage*/
         {
             Debug.Log(hit.collider.name);
 
-            //IDamage dmg = hit.collider.GetComponent<IDamage>();
+            IDamage dmg = hit.collider.GetComponent<IDamage>();
 
-            //if (dmg != null)
-            //{
-            //    dmg.takeDamage(shootDamage);
-            //}
+            if (dmg != null)
+            {
+                dmg.takeDamage(shootDamage);
+            }
         }
     }
 

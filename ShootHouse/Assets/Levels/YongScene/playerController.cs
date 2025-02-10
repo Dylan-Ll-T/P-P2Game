@@ -26,6 +26,10 @@ public class playerController : MonoBehaviour, IDamage
     Vector3 playerVel;
     bool isSprinting;
 
+    private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
+    private Vector3 playerScale = new Vector3(1, 1f, 1);
+    private bool isCrouching = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,76 +43,101 @@ public class playerController : MonoBehaviour, IDamage
 
         movement();
         sprint();
-    }
 
-    void movement()
-    {
-
-        if (controller.isGrounded)
         {
-            jumpCount = 0;
-            playerVel = Vector3.zero;
-        }
-        //moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        //transform.position += moveDir * speed * Time.deltaTime;
-
-        moveDir = (Input.GetAxis("Horizontal") * transform.right) +
-                  (Input.GetAxis("Vertical") * transform.forward);
-        controller.Move(moveDir * speed * Time.deltaTime);
-
-        jump();
-
-        controller.Move(playerVel * Time.deltaTime);
-        playerVel.y -= gravity * Time.deltaTime;
-
-        shootTimer += Time.deltaTime;
-
-        if (Input.GetButton("Fire1") && shootTimer >= shootRate)
-        {
-            shoot();
-        }
-    }
-
-    void sprint()
-    {
-        if (Input.GetButtonDown("Sprint"))
-        {
-            speed *= sprintMod;
-        }
-        else if (Input.GetButtonUp("Sprint"))
-        {
-            speed /= sprintMod;
-        }
-    }
-    void jump()
-    {
-        if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
-        {
-            jumpCount++;
-            playerVel.y = jumpSpeed;
-        }
-    }
-
-    void shoot()
-    {
-        shootTimer = 0;
-
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
-        {
-            Debug.Log(hit.collider.name);
-
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
-
-            if (dmg != null)
+            if (Input.GetButtonDown("Crouch"))
             {
-                dmg.takeDamage(shootDamage);
+                if (isCrouching)
+                {
+                    transform.localScale = playerScale;
+                    transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+                }
+                else
+                {
+                    transform.localScale = crouchScale;
+                    transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+                }
+
+                isCrouching = !isCrouching;
+            }
+        }
+
+        void movement()
+        {
+
+            if (controller.isGrounded)
+            {
+                jumpCount = 0;
+                playerVel = Vector3.zero;
+            }
+            //moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            //transform.position += moveDir * speed * Time.deltaTime;
+
+            moveDir = (Input.GetAxis("Horizontal") * transform.right) +
+                      (Input.GetAxis("Vertical") * transform.forward);
+            controller.Move(moveDir * speed * Time.deltaTime);
+
+            jump();
+
+            controller.Move(playerVel * Time.deltaTime);
+            playerVel.y -= gravity * Time.deltaTime;
+
+            shootTimer += Time.deltaTime;
+
+            if (Input.GetButton("Fire1") && shootTimer >= shootRate)
+            {
+                shoot();
+            }
+        }
+
+        void sprint()
+        {
+            if (Input.GetButtonDown("Sprint"))
+            {
+                speed *= sprintMod;
+            }
+            else if (Input.GetButtonUp("Sprint"))
+            {
+                speed /= sprintMod;
+            }
+        }
+        void jump()
+        {
+            if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
+            {
+                jumpCount++;
+                playerVel.y = jumpSpeed;
+
+                if (isCrouching)
+                {
+                    transform.localScale = playerScale;
+                    transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+                }
+                isCrouching = !isCrouching;
+            }
+        }
+
+        void shoot()
+        {
+            shootTimer = 0;
+
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
+            {
+                Debug.Log(hit.collider.name);
+
+                IDamage dmg = hit.collider.GetComponent<IDamage>();
+
+                if (dmg != null)
+                {
+                    dmg.takeDamage(shootDamage);
+                }
             }
         }
     }
-
     public void takeDamage(int amount)
     {
         HP -= amount;
     }
+
 }

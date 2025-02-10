@@ -6,11 +6,10 @@ public class EnemyAI : MonoBehaviour, IDamage
 {
     [Header("--Basics--")]
     [SerializeField] Renderer model;
-    //[SerializeField] NavMeshAgent agent;
-    //[SerializeField] Animator anim;
+    [SerializeField] NavMeshAgent agent;
+    [SerializeField] Animator anim;
 
-    [SerializeField] int HP;
-    // These don't do anything yet.
+    [SerializeField] int enemyHealth;
     [SerializeField] int animTransSpeed;
     [SerializeField] int faceTargetSpeed;
 
@@ -28,20 +27,20 @@ public class EnemyAI : MonoBehaviour, IDamage
     void Start()
     {
         colorOrig = model.material.color;
-        //gamemanager.instance.updateGameGoal(1);
+        gamemanager.instance.updateGameGoal(1);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //float agentSpeed = agent.velocity.normalized.magnitude;
-        //float animCurSpeed = anim.GetFloat("Speed");
+        float agentSpeed = agent.velocity.normalized.magnitude;
+        float animCurSpeed = anim.GetFloat("Speed");
 
-        //playerDir = gamemanager.instance.player.transform.position - transform.position;
+        playerDir = gamemanager.instance.player.transform.position - transform.position;
 
-        //anim.SetFloat("Speed", Mathf.MoveTowards(animCurSpeed, agentSpeed, Time.deltaTime * animTransSpeed));
+        anim.SetFloat("Speed", Mathf.MoveTowards(animCurSpeed, agentSpeed, Time.deltaTime * animTransSpeed));
         shootTimer += Time.deltaTime;
-        //agent.SetDestination(gamemanager.instance.player.transform.position);
+        agent.SetDestination(gamemanager.instance.player.transform.position);
 
 
         if (shootTimer >= shootRate)
@@ -49,10 +48,10 @@ public class EnemyAI : MonoBehaviour, IDamage
             shoot();
         }
 
-        //if (agent.remainingDistance <= agent.stoppingDistance)
-        //{
-        //    faceTarget();
-        //}
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            faceTarget();
+        }
     }
 
     void faceTarget()
@@ -63,12 +62,11 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void takeDamage(int amount)
     {
-        HP -= amount;
+        enemyHealth -= amount;
         StartCoroutine(flashRed());
-        if (HP <= 0)
+        if (enemyHealth <= 0)
         {
-            // ENABLE WHEN GAMEMANAGER IS IMPLEMENTED
-            //gamemanager.instance.updateGameGoal(-1);
+            gamemanager.instance.updateGameGoal(-1);
             Destroy(gameObject);
         }
     }

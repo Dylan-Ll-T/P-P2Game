@@ -44,7 +44,7 @@ public class playerController : MonoBehaviour, IDamage
     float currentStamina;
     float timeSinceLastSprint;
     int baseSpeed;
-    int HPOrig
+    int HPOrig;
 
     private Vector3 crouchScale = new Vector3(0.4166666f, 0.2083333f, 0.4166666f);
     private Vector3 playerScale = new Vector3(0.4166666f, 0.4166666f, 0.4166666f);
@@ -53,7 +53,7 @@ public class playerController : MonoBehaviour, IDamage
     void Start()
     {
         HPOrig = HP;
-        updatePlayerUI()
+        updatePlayerUI();
 
         baseSpeed = speed;
         currentStamina = maxStamina;

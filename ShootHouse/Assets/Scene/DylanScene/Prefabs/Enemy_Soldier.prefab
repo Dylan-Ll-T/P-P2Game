@@ -204,9 +204,10 @@ GameObject:
   - component: {fileID: 3989596008160585340}
   - component: {fileID: 1993637787275215590}
   - component: {fileID: -2493074349356017526}
-  m_Layer: 0
+  - component: {fileID: 1879562915365757661}
+  m_Layer: 6
   m_Name: Enemy_Soldier
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,9 +244,11 @@ MonoBehaviour:
   model: {fileID: 4702076343609166841}
   agent: {fileID: 3989596008160585340}
   anim: {fileID: 5982731131301603165}
+  headPos: {fileID: 1627758229739375191}
   enemyHealth: 3
   animTransSpeed: 3
   faceTargetSpeed: 3
+  FOV: 90
   bullet: {fileID: 1541718661690039945, guid: aba4f9c991b3da54fbd5480f7490503d, type: 3}
   shootPos: {fileID: 3630755522957000071}
   shootRate: 1
@@ -280,14 +283,14 @@ NavMeshAgent:
   m_GameObject: {fileID: 2829268206201058475}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 5
-  m_Speed: 3.5
+  m_Radius: 3
+  m_Speed: 0
   m_Acceleration: 32
   avoidancePriority: 50
   m_AngularSpeed: 600
-  m_StoppingDistance: 8
+  m_StoppingDistance: 100
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
@@ -312,7 +315,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.4
   m_Height: 2.2
   m_Direction: 1
   m_Center: {x: 0, y: 1.1, z: 0}
@@ -335,8 +338,29 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.25
-  m_Center: {x: 0, y: 2.4, z: 0}
+  m_Radius: 0.21820164
+  m_Center: {x: 0, y: 2.3682017, z: 0}
+--- !u!135 &1879562915365757661
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2829268206201058475}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 15
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3558997852412979421
 GameObject:
   m_ObjectHideFlags: 0

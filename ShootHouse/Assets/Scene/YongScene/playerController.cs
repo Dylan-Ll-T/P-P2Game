@@ -220,10 +220,17 @@ public class playerController : MonoBehaviour, IDamage
         HP -= amount;
         updatePlayerUI();
 
-        //if (HP <= 0)
-        //{
-        //    gamemanager.instance.youLose();
-        //}
+        if (HP <= 0)
+        {
+            gamemanager.instance.youLose();
+        }
+    }
+
+    IEnumerator flashDamageScreen()
+    {
+        gamemanager.instance.playerDamageScreen.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gamemanager.instance.playerDamageScreen.SetActive(false);
     }
 
     void updatePlayerUI()

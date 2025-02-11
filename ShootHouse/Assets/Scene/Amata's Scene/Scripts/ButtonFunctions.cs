@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonFinctions : MonoBehaviour // misspelled functions, dont let this mess me up
+public class ButtonFunctions : MonoBehaviour // misspelled functions, dont let this mess me up
 {
     public void resume()
     {
@@ -16,10 +16,11 @@ public class ButtonFinctions : MonoBehaviour // misspelled functions, dont let t
 
     public void quit()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+    #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+    #else
+            Application.Quit();
+    #endif
+
     }
 }

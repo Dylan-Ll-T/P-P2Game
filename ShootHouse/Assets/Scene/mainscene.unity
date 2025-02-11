@@ -359,6 +359,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8722487104516805040, guid: 905225471b2b33a46901a92c812c0685, type: 3}
+      propertyPath: staminaRegenRate
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

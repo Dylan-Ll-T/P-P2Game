@@ -44,6 +44,7 @@ public class playerController : MonoBehaviour, IDamage
     float currentStamina;
     float timeSinceLastSprint;
     int baseSpeed;
+    int HPOrig
 
     private Vector3 crouchScale = new Vector3(0.4166666f, 0.2083333f, 0.4166666f);
     private Vector3 playerScale = new Vector3(0.4166666f, 0.4166666f, 0.4166666f);
@@ -51,6 +52,9 @@ public class playerController : MonoBehaviour, IDamage
 
     void Start()
     {
+        HPOrig = HP;
+        updatePlayerUI()
+
         baseSpeed = speed;
         currentStamina = maxStamina;
         if (staminaBar) staminaBar.fillAmount = 1f;
@@ -214,5 +218,16 @@ public class playerController : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
+        updatePlayerUI();
+
+        if (HP <= 0)
+        {
+            gamemanager.instance.youLose();
+        }
+    }
+
+    void updatePlayerUI()
+    {
+        gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
     }
 }

@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: 5982731131301603165}
   - component: {fileID: 3989596008160585340}
   - component: {fileID: 1993637787275215590}
+  - component: {fileID: 1009543370144311722}
   m_Layer: 0
   m_Name: Enemy_Soldier
   m_TagString: Untagged
@@ -239,15 +240,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dda6c133d316a24458817b25d184d1ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 4702076343609166841}
-  agent: {fileID: 3989596008160585340}
-  anim: {fileID: 5982731131301603165}
-  enemyHealth: 3
-  animTransSpeed: 1
-  faceTargetSpeed: 1
+  model: {fileID: 0}
+  agent: {fileID: 0}
+  anim: {fileID: 0}
+  enemyHealth: 0
+  animTransSpeed: 0
+  faceTargetSpeed: 0
   bullet: {fileID: 0}
-  shootPos: {fileID: 3630755522957000071}
-  shootRate: 1
+  shootPos: {fileID: 0}
+  shootRate: 0
 --- !u!95 &5982731131301603165
 Animator:
   serializedVersion: 7
@@ -315,6 +316,29 @@ CapsuleCollider:
   m_Height: 2.25
   m_Direction: 1
   m_Center: {x: 0, y: 1.25, z: 0}
+--- !u!136 &1009543370144311722
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2829268206201058475}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.4, z: 0}
 --- !u!1 &3558997852412979421
 GameObject:
   m_ObjectHideFlags: 0

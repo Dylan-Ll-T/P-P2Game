@@ -798,10 +798,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerDamageScreen
       objectReference: {fileID: 0}
-    - target: {fileID: 5922504783454917409, guid: 6830f3a4ef5981e41abac413d904921d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

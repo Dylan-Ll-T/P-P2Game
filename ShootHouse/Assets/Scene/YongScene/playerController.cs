@@ -218,7 +218,9 @@ public class playerController : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
+        
         updatePlayerUI();
+        StartCoroutine(flashDamageScreen());
 
         if (HP <= 0)
         {

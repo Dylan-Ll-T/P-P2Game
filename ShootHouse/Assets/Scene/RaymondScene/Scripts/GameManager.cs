@@ -13,7 +13,6 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuLose;
     [SerializeField] TMP_Text goalCountText;
 
-
     public Image playerHPBar;
     public GameObject playerDamageScreen;
     public bool isPause;

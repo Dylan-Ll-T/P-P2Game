@@ -21,7 +21,7 @@ public class EnemyArrow : MonoBehaviour
     void Update()
     {
         distance = Vector3.Distance(Player.transform.position, Enemy.transform.position);
-        if (distance <= 50)
+        if (distance <= 59)
         {
             IsVisable.alpha = 1;
             if (distance > 15)

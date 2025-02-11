@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 47c000e8e166f14429b339a7adc36151
+guid: 9f53ab04fc057a8448d43ff8001f3d2f
 timeCreated: 1476235203
 licenseType: Store
 ModelImporter:
@@ -55,7 +55,7 @@ ModelImporter:
     400044: Bip001 Spine
     400046: Bip001 Spine1
     400048: //RootNode
-    7400000: demo_combat_idle
+    7400000: demo_combat_shoot
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -79,17 +79,17 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: demo_combat_idle
+      name: demo_combat_shoot
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 100
+      lastFrame: 15
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -216,5 +216,5 @@ AssetOrigin:
   productId: 73611
   packageName: Low Poly Soldiers Demo
   packageVersion: 1.0
-  assetPath: Assets/LowPolySoldiers_demo/animation/demo_combat_idle.FBX
+  assetPath: Assets/Scene/Amata's Scene/Models/LowPolySoldiers_demo/animation/demo_combat_shoot.FBX
   uploadId: 143992

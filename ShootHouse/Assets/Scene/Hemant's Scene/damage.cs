@@ -18,7 +18,10 @@ public class damage : MonoBehaviour
             Destroy(gameObject, destroytime);
         }
     }
+    void Update()
+    {
 
+    }
     private void OnTriggerEnter(Collider other)
     {
         IDamage dmg = other.GetComponent<IDamage>();

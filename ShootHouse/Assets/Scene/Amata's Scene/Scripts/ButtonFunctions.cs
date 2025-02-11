@@ -16,10 +16,11 @@ public class ButtonFunctions : MonoBehaviour // misspelled functions, dont let t
 
     public void quit()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+    #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+    #else
+            Application.Quit();
+    #endif
+
     }
 }

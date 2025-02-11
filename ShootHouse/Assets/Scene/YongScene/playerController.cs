@@ -14,9 +14,15 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
 
+    [SerializeField] float aimSpeed;
+
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
+
+    [SerializeField] GameObject gun;
+    [SerializeField] GameObject hipPos;
+    [SerializeField] GameObject aimPos;
 
     int jumpCount;
 
@@ -60,6 +66,16 @@ public class playerController : MonoBehaviour, IDamage
 
                 isCrouching = !isCrouching;
             }
+
+            if (Input.GetKey(KeyCode.Mouse1))
+            {
+                gun.transform.position = Vector3.Lerp(gun.transform.position, aimPos.transform.position, aimSpeed);
+            }
+            else
+            {
+                gun.transform.position = Vector3.Lerp(gun.transform.position, hipPos.transform.position, aimSpeed);
+            }
+
         }
 
         void movement()

@@ -1152,6 +1152,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shoot Sound
       objectReference: {fileID: 0}
+    - target: {fileID: 4339624071453051115, guid: 60e5a85c1313c9d4fac61e50dafa4518, type: 3}
+      propertyPath: m_Pitch
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339624071453051115, guid: 60e5a85c1313c9d4fac61e50dafa4518, type: 3}
+      propertyPath: m_Volume
+      value: 0.07
+      objectReference: {fileID: 0}
     - target: {fileID: 5915950561178959236, guid: 60e5a85c1313c9d4fac61e50dafa4518, type: 3}
       propertyPath: m_LocalPosition.x
       value: 62.446354

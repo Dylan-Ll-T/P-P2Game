@@ -22,6 +22,8 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
+    [SerializeField] GameObject shootSound;
+    public ParticleSystem muzzleFlash;
 
     [Header("Weapon Settings")]
     [SerializeField] GameObject gun;
@@ -54,6 +56,8 @@ public class playerController : MonoBehaviour, IDamage
     {
         HPOrig = HP;
         updatePlayerUI();
+
+        shootSound.SetActive(false);
 
         baseSpeed = speed;
         currentStamina = maxStamina;
@@ -139,11 +143,14 @@ public class playerController : MonoBehaviour, IDamage
     void shoot()
     {
         shootTimer = 0;
-
+       
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
             Debug.Log(hit.collider.name);
+
+            StartCoroutine(Shoot());
+            muzzleFlash.Play();
 
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
@@ -153,7 +160,12 @@ public class playerController : MonoBehaviour, IDamage
             }
         }
     }
-
+    IEnumerator Shoot()
+    {
+        shootSound.SetActive(true);
+        yield return new WaitForSeconds(shootRate);
+        shootSound.SetActive(false);
+    }
     void ToggleCrouch()
     {
         if (isCrouching)

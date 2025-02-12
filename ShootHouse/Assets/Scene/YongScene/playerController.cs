@@ -218,7 +218,9 @@ public class playerController : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
+        
         updatePlayerUI();
+        StartCoroutine(flashDamageScreen());
 
         if (HP <= 0)
         {
@@ -234,7 +236,7 @@ public class playerController : MonoBehaviour, IDamage
     }
 
     void updatePlayerUI()
-    {
+    {     
         gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
     }
 }

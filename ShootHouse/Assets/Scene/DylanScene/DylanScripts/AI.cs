@@ -9,9 +9,12 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
 
+    [SerializeField] Transform headPos;
     [SerializeField] int enemyHealth;
     [SerializeField] int animTransSpeed;
     [SerializeField] int faceTargetSpeed;
+    [SerializeField] int FOV;
+
 
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootPos;
@@ -20,8 +23,10 @@ public class EnemyAI : MonoBehaviour, IDamage
     Color colorOrig;
 
     float shootTimer;
+    float angleToPlayer;
 
     Vector3 playerDir;
+    bool playerInRange;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -36,23 +41,62 @@ public class EnemyAI : MonoBehaviour, IDamage
         float agentSpeed = agent.velocity.normalized.magnitude;
         float animCurSpeed = anim.GetFloat("Speed");
 
-        playerDir = gamemanager.instance.player.transform.position - transform.position;
-
         anim.SetFloat("Speed", Mathf.MoveTowards(animCurSpeed, agentSpeed, Time.deltaTime * animTransSpeed));
         shootTimer += Time.deltaTime;
-        agent.SetDestination(gamemanager.instance.player.transform.position);
 
-
-        if (shootTimer >= shootRate)
+        // Roam
+        if (playerInRange && canSeePlayer())
         {
-            shoot();
-        }
 
-        if (agent.remainingDistance <= agent.stoppingDistance)
-        {
-            faceTarget();
         }
     }
+
+    bool canSeePlayer()
+    {
+        playerDir = gamemanager.instance.player.transform.position - headPos.position;
+        angleToPlayer = Vector3.Angle(playerDir, transform.forward);
+
+        Debug.DrawRay(headPos.position, playerDir);
+
+        RaycastHit hit;
+        if (Physics.Raycast(headPos.position, playerDir, out hit))
+        {
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= FOV)
+            {
+                agent.SetDestination(gamemanager.instance.player.transform.position);
+
+                if (shootTimer >= shootRate)
+                {
+                    shoot();
+                }
+
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    faceTarget();
+                }
+
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+        }
+    }
+
 
     void faceTarget()
     {
@@ -64,6 +108,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         enemyHealth -= amount;
         StartCoroutine(flashRed());
+        agent.SetDestination(gamemanager.instance.player.transform.position);
         if (enemyHealth <= 0)
         {
             gamemanager.instance.updateGameGoal(-1);

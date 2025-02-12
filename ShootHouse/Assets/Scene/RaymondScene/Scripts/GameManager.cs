@@ -13,7 +13,6 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuLose;
     [SerializeField] TMP_Text goalCountText;
 
-
     public Image playerHPBar;
     public GameObject playerDamageScreen;
     public bool isPause;
@@ -70,7 +69,7 @@ public class gamemanager : MonoBehaviour
     public void updateGameGoal(int amount)
     {
         goalCount += amount;
-        goalCountText.text = goalCount.ToString("F0");
+        //goalCountText.text = goalCount.ToString("F0");
 
         if (goalCount <= 0)
         {

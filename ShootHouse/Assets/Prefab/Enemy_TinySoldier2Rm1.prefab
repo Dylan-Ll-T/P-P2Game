@@ -252,7 +252,7 @@ MonoBehaviour:
   animTransSpeed: 3
   faceTargetSpeed: 3
   FOV: 90
-  bullet: {fileID: 1541718661690039945, guid: aba4f9c991b3da54fbd5480f7490503d, type: 3}
+  bullet: {fileID: 1541718661690039945, guid: 0c11c606d2b6fd04b80d0c32e7faba2b, type: 3}
   shootPos: {fileID: 8883421332546734465}
   shootRate: 1
 --- !u!95 &269828469719038336

@@ -22,6 +22,8 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
+
+    //Delvin's Additions
     [SerializeField] GameObject shootSound;
     public ParticleSystem muzzleFlash;
 
@@ -29,7 +31,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] GameObject gun;
     [SerializeField] GameObject hipPos;
     [SerializeField] GameObject aimPos;
-
+    //End of Delvin's Additions
     [Header("Stamina Settings")]
     [SerializeField] float maxStamina;
     [SerializeField] float staminaDepleteRate;
@@ -56,8 +58,9 @@ public class playerController : MonoBehaviour, IDamage
     {
         HPOrig = HP;
         updatePlayerUI();
-
+        //Delvin's Additions
         shootSound.SetActive(false);
+        //End of Delvin's Additions
 
         baseSpeed = speed;
         currentStamina = maxStamina;
@@ -77,6 +80,7 @@ public class playerController : MonoBehaviour, IDamage
             ToggleCrouch();
         }
 
+        //Delvin's Additions
         if (Input.GetKey(KeyCode.Mouse1))
         {
             gun.transform.position = Vector3.Lerp(gun.transform.position, aimPos.transform.position, aimSpeed);
@@ -85,6 +89,7 @@ public class playerController : MonoBehaviour, IDamage
         {
             gun.transform.position = Vector3.Lerp(gun.transform.position, hipPos.transform.position, aimSpeed);
         }
+        //End of Delvin's Additions
     }
 
     void movement()
@@ -149,8 +154,13 @@ public class playerController : MonoBehaviour, IDamage
         {
             Debug.Log(hit.collider.name);
 
-            StartCoroutine(Shoot());
-            muzzleFlash.Play();
+            //Delvin's Additions
+            if (shootTimer == 0)
+            {
+                StartCoroutine(Shoot());
+                muzzleFlash.Play();
+            }
+            //End of Delvin's Additions
 
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
@@ -160,12 +170,14 @@ public class playerController : MonoBehaviour, IDamage
             }
         }
     }
+    //Delvin's Additions
     IEnumerator Shoot()
     {
         shootSound.SetActive(true);
         yield return new WaitForSeconds(shootRate);
         shootSound.SetActive(false);
     }
+    //End of Delvin's Additions
     void ToggleCrouch()
     {
         if (isCrouching)

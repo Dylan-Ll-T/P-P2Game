@@ -129,10 +129,10 @@ public class playerController : MonoBehaviour, IDamage
 
             if (isCrouching)
             {
-                transform.localScale = playerScale;
-                transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+                controller.height = 2f;
+                controller.center = Vector3.zero; 
+                isCrouching = false;
             }
-            isCrouching = !isCrouching;
         }
     }
 

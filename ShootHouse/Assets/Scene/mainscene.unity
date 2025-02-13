@@ -826,6 +826,10 @@ PrefabInstance:
       propertyPath: PlaneSize
       value: 
       objectReference: {fileID: 728676526}
+    - target: {fileID: 4072653912007682214, guid: b4afa3370d4e9de46ae7d62e3f94c0fb, type: 3}
+      propertyPath: m_BlocksRaycasts
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6046223629157273562, guid: b4afa3370d4e9de46ae7d62e3f94c0fb, type: 3}
       propertyPath: m_Name
       value: Indicator
@@ -1537,6 +1541,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3824476795280260316, guid: 552ea14596d74a9418d9ccef7e862a11, type: 3}
+      propertyPath: m_Height
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4697558974129425263, guid: 552ea14596d74a9418d9ccef7e862a11, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1544,6 +1552,10 @@ PrefabInstance:
     - target: {fileID: 4714114139541575985, guid: 552ea14596d74a9418d9ccef7e862a11, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5284620120244533866, guid: 552ea14596d74a9418d9ccef7e862a11, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8456794089174745824, guid: 552ea14596d74a9418d9ccef7e862a11, type: 3}
       propertyPath: shootSound

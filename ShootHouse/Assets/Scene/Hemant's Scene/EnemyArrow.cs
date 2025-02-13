@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class EnemyArrow : MonoBehaviour
 {
     public Transform PlaneSize;
-    public Transform Player;
     public CanvasGroup IsVisable;
     public float distance;
     public Image AllertArrow;
@@ -25,7 +24,7 @@ public class EnemyArrow : MonoBehaviour
         Enemy = FindClosestEnemy();
         if (Enemy != null)
         {
-            distance = Vector3.Distance(Player.transform.position, Enemy.transform.position);
+            distance = Vector3.Distance(gamemanager.instance.player.transform.position, Enemy.transform.position);
             if (distance <= 5)
             {
                 IsVisable.alpha = 1;
@@ -54,7 +53,7 @@ public class EnemyArrow : MonoBehaviour
 
         for (int i = 0; i < enemies.Length; i++)
         {
-            dist = Vector3.Distance(Player.position, enemies[i].transform.position);
+            dist = Vector3.Distance(gamemanager.instance.player.transform.position, enemies[i].transform.position);
             if (dist < minDistance)
             {
                 minDistance = dist;

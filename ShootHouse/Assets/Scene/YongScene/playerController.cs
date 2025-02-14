@@ -39,6 +39,12 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float staminaRegenDelay;
     [SerializeField] Image staminaBar;
 
+    [Header("Dash Settings")]
+    [SerializeField] int maxDashCount;
+    [SerializeField] float dashSpeed;
+    [SerializeField] float dashDuration;
+
+
     // Private variables
     int jumpCount;
     float shootTimer;
@@ -50,9 +56,13 @@ public class playerController : MonoBehaviour, IDamage
     int baseSpeed;
     int HPOrig;
 
+    private bool isInfiniteStamina = false;
     private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
     private Vector3 playerScale = new Vector3(1, 1, 1);
     private bool isCrouching = false;
+
+    private int currentDashCount;
+    private bool isDashing = false;
 
     void Start()
     {
@@ -65,6 +75,9 @@ public class playerController : MonoBehaviour, IDamage
         baseSpeed = speed;
         currentStamina = maxStamina;
         if (staminaBar) staminaBar.fillAmount = 1f;
+
+        currentDashCount = maxDashCount;
+        gamemanager.instance.UpdateDashUI(currentDashCount, maxDashCount);
     }
 
     void Update()
@@ -90,6 +103,11 @@ public class playerController : MonoBehaviour, IDamage
             gun.transform.position = Vector3.Lerp(gun.transform.position, hipPos.transform.position, aimSpeed);
         }
         //End of Delvin's Additions
+
+        if (Input.GetButtonDown("Dash") && !isDashing && currentDashCount > 0)
+        {
+            StartCoroutine(Dash());
+        }
     }
 
     void movement()
@@ -196,6 +214,14 @@ public class playerController : MonoBehaviour, IDamage
 
     void HandleStamina()
     {
+
+        if (isInfiniteStamina)
+        {
+            currentStamina = maxStamina;
+            UpdateStaminaUI();
+            return;
+        }
+
         bool isMoving = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
         bool trySprint = Input.GetButton("Sprint");
 
@@ -263,4 +289,43 @@ public class playerController : MonoBehaviour, IDamage
     {     
         gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
     }
+
+    public void ActivateInfiniteStamina(float duration)
+    {
+        StartCoroutine(InfiniteStaminaRoutine(duration));
+    }
+
+    private IEnumerator InfiniteStaminaRoutine(float duration)
+    {
+        isInfiniteStamina = true;
+        currentStamina = maxStamina;
+        UpdateStaminaUI();
+        yield return new WaitForSeconds(duration);
+        isInfiniteStamina = false;
+    }
+
+    IEnumerator Dash()
+    {
+        isDashing = true;
+        currentDashCount--;
+        gamemanager.instance.UpdateDashUI(currentDashCount, maxDashCount);
+
+        float startTime = Time.time;
+        Vector3 dashDirection = moveDir.normalized;
+
+        while (Time.time < startTime + dashDuration)
+        {
+            controller.Move(dashDirection * dashSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        isDashing = false;
+    }
+
+    public void RefillDash()
+    {
+        currentDashCount = maxDashCount;
+        gamemanager.instance.UpdateDashUI(currentDashCount, maxDashCount);
+    }
+
 }

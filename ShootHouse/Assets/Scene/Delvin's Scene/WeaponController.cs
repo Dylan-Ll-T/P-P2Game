@@ -82,7 +82,7 @@ public class WeaponController : MonoBehaviour
             magazineSize = pistolAmmo;
             fireRate = pistolFireRate;
             weaponDamage = pistolDamage;
-            recoilAmount = 0.05f;
+            recoilAmount = 5f;
             muzzleFlash = pistolMuzzleFlash;
         }
         else if (weapon == rifle)
@@ -91,7 +91,7 @@ public class WeaponController : MonoBehaviour
             magazineSize = rifleAmmo;
             fireRate = rifleFireRate;
             weaponDamage = rifleDamage;
-            recoilAmount = 0.1f;
+            recoilAmount = 5f;
             muzzleFlash = rifleMuzzleFlash;
         }
         else if (weapon == shotgun)
@@ -100,7 +100,7 @@ public class WeaponController : MonoBehaviour
             magazineSize = shotgunAmmo;
             fireRate = shotgunFireRate;
             weaponDamage = shotgunDamage;
-            recoilAmount = 0.2f;
+            recoilAmount = 10f;
             muzzleFlash = shotgunMuzzleFlash;
         }
 

@@ -33,8 +33,14 @@ public class WeaponController : MonoBehaviour
     public float shotgunFireRate;
 
     [Header("Positions")]
-    public Transform hipPos;
-    public Transform aimPos;
+    public Transform pistolHipPos;
+    public Transform pistolAimPos;
+    public Transform rifleHipPos;
+    public Transform rifleAimPos;
+    public Transform shotgunHipPos;
+    public Transform shotgunAimPos;
+    public Transform currentHipPos;
+    public Transform currentAimPos;
 
     [Header("Effects")]
     public GameObject shootSound;
@@ -110,25 +116,46 @@ public class WeaponController : MonoBehaviour
     // -------- AIMING --------
     public void HandleAiming()
     {
-        float aimSpeed = 10f;
+        float aimSpeed = 20f;
+
+        if (currentWeapon == pistol)
+        {
+            currentHipPos = pistolHipPos;
+            currentAimPos = pistolAimPos;
+        }
+        else if (currentWeapon == rifle)
+        {
+            currentHipPos = rifleHipPos;
+            currentAimPos = rifleAimPos;
+        }
+        else if (currentWeapon == shotgun)
+        {
+            currentHipPos = shotgunHipPos;
+            currentAimPos = shotgunAimPos;
+        }
 
         if (Input.GetKey(KeyCode.Mouse1))
         {
+            currentWeapon.transform.parent = Camera.main.transform;
             currentWeapon.transform.position = Vector3.Lerp(
                 currentWeapon.transform.position,
-                aimPos.position,
-                aimSpeed * Time.deltaTime
+                currentAimPos.position,
+                aimSpeed
             );
         }
+
         else
         {
             currentWeapon.transform.position = Vector3.Lerp(
                 currentWeapon.transform.position,
-                hipPos.position,
-                aimSpeed * Time.deltaTime
+                currentHipPos.position,
+                aimSpeed
             );
         }
+        Debug.Log("Aiming at: " + currentAimPos.position);
+        Debug.Log("Weapon position before aim: " + currentWeapon.transform.position);
     }
+
 
     // -------- SHOOTING --------
     public void HandleShooting()
@@ -205,7 +232,7 @@ public class WeaponController : MonoBehaviour
     public IEnumerator Reload()
     {
         isReloading = true;
-        float reloadTime = 2.0f;
+        float reloadTime = 5f;
 
         Vector3 reloadRotation = originalRotation + new Vector3(-30, 0, 0);
         float elapsedTime = 0;
@@ -235,4 +262,5 @@ public class WeaponController : MonoBehaviour
         isReloading = false;
     }
 }
+
 

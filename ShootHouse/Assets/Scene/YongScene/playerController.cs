@@ -15,22 +15,22 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
 
-    [Header("Aiming Settings")]
-    [SerializeField] float aimSpeed;
+    //[Header("Aiming Settings")]
+    //[SerializeField] float aimSpeed;
 
-    [Header("Shooting Settings")]
-    [SerializeField] int shootDamage;
-    [SerializeField] float shootRate;
-    [SerializeField] int shootDist;
+    //[Header("Shooting Settings")]
+    //[SerializeField] int shootDamage;
+    //[SerializeField] float shootRate;
+    //[SerializeField] int shootDist;
 
-    //Delvin's Additions
-    [SerializeField] GameObject shootSound;
-    public ParticleSystem muzzleFlash;
+    ////Delvin's Additions
+    //[SerializeField] GameObject shootSound;
+    //public ParticleSystem muzzleFlash;
 
-    [Header("Weapon Settings")]
-    [SerializeField] GameObject gun;
-    [SerializeField] GameObject hipPos;
-    [SerializeField] GameObject aimPos;
+    //[Header("Weapon Settings")]
+    //[SerializeField] GameObject gun;
+    //[SerializeField] GameObject hipPos;
+    //[SerializeField] GameObject aimPos;
     //End of Delvin's Additions
     [Header("Stamina Settings")]
     [SerializeField] float maxStamina;
@@ -38,6 +38,8 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float staminaRegenRate;
     [SerializeField] float staminaRegenDelay;
     [SerializeField] Image staminaBar;
+
+    [SerializeField] WeaponController weaponController;
 
     // Private variables
     int jumpCount;
@@ -57,10 +59,10 @@ public class playerController : MonoBehaviour, IDamage
     void Start()
     {
         HPOrig = HP;
-        updatePlayerUI();
-        //Delvin's Additions
-        shootSound.SetActive(false);
-        //End of Delvin's Additions
+        //updatePlayerUI();
+        ////Delvin's Additions
+        //shootSound.SetActive(false);
+        ////End of Delvin's Additions
 
         baseSpeed = speed;
         currentStamina = maxStamina;
@@ -69,7 +71,7 @@ public class playerController : MonoBehaviour, IDamage
 
     void Update()
     {
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.yellow);
+        //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.yellow);
 
         movement();
         HandleStamina();
@@ -80,16 +82,16 @@ public class playerController : MonoBehaviour, IDamage
             ToggleCrouch();
         }
 
-        //Delvin's Additions
-        if (Input.GetKey(KeyCode.Mouse1))
-        {
-            gun.transform.position = Vector3.Lerp(gun.transform.position, aimPos.transform.position, aimSpeed);
-        }
-        else
-        {
-            gun.transform.position = Vector3.Lerp(gun.transform.position, hipPos.transform.position, aimSpeed);
-        }
-        //End of Delvin's Additions
+        ////Delvin's Additions
+        //if (Input.GetKey(KeyCode.Mouse1))
+        //{
+        //    gun.transform.position = Vector3.Lerp(gun.transform.position, aimPos.transform.position, aimSpeed);
+        //}
+        //else
+        //{
+        //    gun.transform.position = Vector3.Lerp(gun.transform.position, hipPos.transform.position, aimSpeed);
+        //}
+        ////End of Delvin's Additions
     }
 
     void movement()
@@ -109,12 +111,12 @@ public class playerController : MonoBehaviour, IDamage
         controller.Move(playerVel * Time.deltaTime);
         playerVel.y -= gravity * Time.deltaTime;
 
-        shootTimer += Time.deltaTime;
+        //shootTimer += Time.deltaTime;
 
-        if (Input.GetButton("Fire1") && shootTimer >= shootRate)
-        {
-            shoot();
-        }
+        //if (Input.GetButton("Fire1") && shootTimer >= shootRate)
+        //{
+        //    shoot();
+        //}
     }
 
     void sprint()
@@ -139,45 +141,45 @@ public class playerController : MonoBehaviour, IDamage
             if (isCrouching)
             {
                 controller.height = 2f;
-                controller.center = Vector3.zero; 
+                controller.center = Vector3.zero;
                 isCrouching = false;
             }
         }
     }
 
-    void shoot()
-    {
-        shootTimer = 0;
-       
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
-        {
-            Debug.Log(hit.collider.name);
+    //void shoot()
+    //{
+    //    shootTimer = 0;
 
-            //Delvin's Additions
-            if (shootTimer == 0)
-            {
-                StartCoroutine(Shoot());
-                muzzleFlash.Play();
-            }
-            //End of Delvin's Additions
+    //    RaycastHit hit;
+    //    if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
+    //    {
+    //        Debug.Log(hit.collider.name);
 
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
+    //        //Delvin's Additions
+    //        if (shootTimer == 0)
+    //        {
+    //            StartCoroutine(Shoot());
+    //            muzzleFlash.Play();
+    //        }
+    //        //End of Delvin's Additions
 
-            if (dmg != null)
-            {
-                dmg.takeDamage(shootDamage);
-            }
-        }
-    }
+    //        IDamage dmg = hit.collider.GetComponent<IDamage>();
+
+    //        if (dmg != null)
+    //        {
+    //            dmg.takeDamage(shootDamage);
+    //        }
+    //    }
+    //}
     //Delvin's Additions
-    IEnumerator Shoot()
-    {
-        shootSound.SetActive(true);
-        yield return new WaitForSeconds(shootRate);
-        shootSound.SetActive(false);
-    }
-    //End of Delvin's Additions
+    //IEnumerator Shoot()
+    //{
+    //    shootSound.SetActive(true);
+    //    yield return new WaitForSeconds(shootRate);
+    //    shootSound.SetActive(false);
+    //}
+    ////End of Delvin's Additions
     void ToggleCrouch()
     {
         if (isCrouching)
@@ -242,7 +244,7 @@ public class playerController : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
-        
+
         updatePlayerUI();
         StartCoroutine(flashDamageScreen());
 
@@ -260,7 +262,14 @@ public class playerController : MonoBehaviour, IDamage
     }
 
     void updatePlayerUI()
-    {     
+    {
         gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
     }
 }
+
+
+
+
+
+
+

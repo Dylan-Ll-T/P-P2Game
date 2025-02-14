@@ -108,7 +108,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         enemyHealth -= amount;
         StartCoroutine(flashRed());
-        agent.SetDestination(gamemanager.instance.player.transform.position);
+        //agent.SetDestination(gamemanager.instance.player.transform.position);
         if (enemyHealth <= 0)
         {
             gamemanager.instance.updateGameGoal(-1);

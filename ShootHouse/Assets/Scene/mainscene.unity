@@ -1817,7 +1817,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8456794089174745824, guid: 552ea14596d74a9418d9ccef7e862a11, type: 3}
       propertyPath: dashSpeed
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8456794089174745824, guid: 552ea14596d74a9418d9ccef7e862a11, type: 3}
       propertyPath: shootSound

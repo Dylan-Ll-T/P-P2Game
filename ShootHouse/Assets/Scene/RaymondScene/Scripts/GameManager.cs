@@ -20,10 +20,12 @@ public class gamemanager : MonoBehaviour
     public playerController playerScript;
 
     int goalCount;
+    GameObject[] enemies;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
@@ -86,4 +88,24 @@ public class gamemanager : MonoBehaviour
         menuActive.SetActive(true);
     }
 
+    public GameObject FindClosestEnemy()
+    {
+        GameObject closest = null;
+        float minDistance = Mathf.Infinity;
+        float dist;
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            if (enemies[i] != null)
+            {dist = Vector3.Distance(player.transform.position, enemies[i].transform.position);
+                if (dist < minDistance)
+                {
+                    minDistance = dist;
+                    closest = enemies[i];
+                }
+            }
+        }
+
+        return closest;
+    }
 }

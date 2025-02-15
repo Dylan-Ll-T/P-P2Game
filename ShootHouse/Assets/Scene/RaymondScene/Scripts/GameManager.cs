@@ -11,6 +11,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
+    [SerializeField] GameObject FullMap;
     [SerializeField] TMP_Text goalCountText;
 
     public Image playerHPBar;
@@ -34,6 +35,7 @@ public class gamemanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ShowMap();
         if (Input.GetButtonDown("Cancel"))
         {
             if (menuActive == null)
@@ -87,6 +89,26 @@ public class gamemanager : MonoBehaviour
         menuActive = menuLose;
         menuActive.SetActive(true);
     }
+
+    public void ShowMap()
+    {
+        if (Input.GetButtonDown("ShowMap"))
+        {
+            if (menuActive == null)
+            {
+                statePause();
+                menuActive = FullMap;
+                menuActive.SetActive(true);
+            }
+            else if (menuActive == FullMap)
+            {
+                stateUnpause();
+                menuActive.SetActive(false);
+                menuActive = null;
+            }
+        }
+    }
+
 
     public GameObject FindClosestEnemy()
     {

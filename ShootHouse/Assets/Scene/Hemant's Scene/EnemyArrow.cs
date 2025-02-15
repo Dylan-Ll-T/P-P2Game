@@ -27,7 +27,7 @@ public class EnemyArrow : MonoBehaviour
         if (Enemy != null)
         {
             distance = Vector3.Distance(gamemanager.instance.player.transform.position, Enemy.transform.position);
-            if (distance <= 8)
+            if (distance <= 8 && gamemanager.instance.isPause == false)
             {
                 IsVisable.alpha = 1;
                 if (distance > 4)

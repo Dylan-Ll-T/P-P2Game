@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class EnemyArrow : MonoBehaviour
 {
-    public Transform PlaneSize;
+    public Image Pivot;
     public CanvasGroup IsVisable;
     public float distance;
     public Image AllertArrow;
@@ -21,20 +21,22 @@ public class EnemyArrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Enemy = FindClosestEnemy();
+        //transform.position = new Vector3(0, (Pivot.transform.position.y + 60),0);
+        //transform.rotation = Quaternion.Euler(Pivot.transform.rotation.x, Pivot.transform.rotation.y, Pivot.transform.rotation.z);
+        Enemy = gamemanager.instance.FindClosestEnemy();
         if (Enemy != null)
         {
             distance = Vector3.Distance(gamemanager.instance.player.transform.position, Enemy.transform.position);
-            if (distance <= 5)
+            if (distance <= 8)
             {
                 IsVisable.alpha = 1;
-                if (distance > 3)
+                if (distance > 4)
                 {
-                    AllertArrow.color = Color.cyan;
+                    AllertArrow.color = Color.yellow;
                 }
                 else
                 {
-                    AllertArrow.color = Color.yellow;
+                    AllertArrow.color = Color.red;
                 }
             }
             else
@@ -44,23 +46,5 @@ public class EnemyArrow : MonoBehaviour
             }
         }
     }
-    public GameObject FindClosestEnemy()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        GameObject closest = null;
-        float minDistance = (PlaneSize.localScale.x * PlaneSize.localScale.y);
-        float dist;
-
-        for (int i = 0; i < enemies.Length; i++)
-        {
-            dist = Vector3.Distance(gamemanager.instance.player.transform.position, enemies[i].transform.position);
-            if (dist < minDistance)
-            {
-                minDistance = dist;
-                closest = enemies[i];
-            }
-        }
-
-        return closest;
-    }
+   
 }

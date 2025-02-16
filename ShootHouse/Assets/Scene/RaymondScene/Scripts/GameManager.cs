@@ -12,6 +12,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] TMP_Text goalCountText;
+    [SerializeField] TMP_Text Ammo;
 
     public Image playerHPBar;
     public GameObject playerDamageScreen;
@@ -77,6 +78,10 @@ public class gamemanager : MonoBehaviour
             menuActive = menuWin;
             menuActive.SetActive(true);
         }
+    }
+    public void updateAmmo(int currentAmmo, int maxAmmo)
+    {
+        Ammo.text = currentAmmo + " / " + maxAmmo;
     }
 
     public void youLose()

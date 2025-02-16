@@ -9153,7 +9153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31d341954e2e7741887433b5b35c11a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sens: 300
+  sens: 500
   lockVertMin: -90
   lockvertMax: 90
   invertY: 0
@@ -32571,9 +32571,9 @@ MonoBehaviour:
   pistolMaxAmmo: 14
   rifleMaxAmmo: 30
   shotgunMaxAmmo: 8
-  pistolDamage: 1
-  rifleDamage: 2
-  shotgunDamage: 3
+  pistolDamage: 0.5
+  rifleDamage: 1
+  shotgunDamage: 2
   pistolFireRate: 0.2
   rifleFireRate: 0.1
   shotgunFireRate: 1

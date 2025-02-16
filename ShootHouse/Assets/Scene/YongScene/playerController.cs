@@ -8,7 +8,7 @@ public class playerController : MonoBehaviour, IDamage
     [Header("Movement Settings")]
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
-    [SerializeField] int HP;
+    [SerializeField] float HP;
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpSpeed;
@@ -50,7 +50,7 @@ public class playerController : MonoBehaviour, IDamage
     float currentStamina;
     float timeSinceLastSprint;
     int baseSpeed;
-    int HPOrig;
+    float HPOrig;
 
     private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
     private Vector3 playerScale = new Vector3(1, 1, 1);
@@ -241,7 +241,7 @@ public class playerController : MonoBehaviour, IDamage
             staminaBar.fillAmount = currentStamina / maxStamina;
     }
 
-    public void takeDamage(int amount)
+    public void takeDamage(float amount)
     {
         HP -= amount;
 

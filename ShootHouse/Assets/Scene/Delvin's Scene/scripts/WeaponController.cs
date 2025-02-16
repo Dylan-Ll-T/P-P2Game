@@ -13,7 +13,7 @@ public class WeaponController : MonoBehaviour
     public int currentAmmo;
     public int CurrentMaxAmmo;
     public float fireRate;
-    public int weaponDamage;
+    public float weaponDamage;
     public ParticleSystem muzzleFlash;
 
     [Header("Ammo Settings")]
@@ -25,9 +25,9 @@ public class WeaponController : MonoBehaviour
     public int shotgunMaxAmmo;
 
     [Header("Damage Settings")]
-    public int pistolDamage;
-    public int rifleDamage;
-    public int shotgunDamage;
+    public float pistolDamage;
+    public float rifleDamage;
+    public float shotgunDamage;
 
     [Header("Fire Rate Settings")]
     public float pistolFireRate;

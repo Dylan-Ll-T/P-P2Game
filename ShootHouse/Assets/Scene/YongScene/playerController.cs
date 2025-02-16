@@ -57,8 +57,7 @@ public class playerController : MonoBehaviour, IDamage
     int HPOrig;
 
     private bool isInfiniteStamina = false;
-    private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
-    private Vector3 playerScale = new Vector3(1, 1, 1);
+    
     private bool isCrouching = false;
 
     private int currentDashCount;
@@ -200,13 +199,15 @@ public class playerController : MonoBehaviour, IDamage
     {
         if (isCrouching)
         {
-            transform.localScale = playerScale;
-            transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+            // Stand up
+            controller.height = 2f;
+            controller.center = Vector3.zero;
         }
         else
         {
-            transform.localScale = crouchScale;
-            transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+            // Crouch
+            controller.height = 1f;
+            controller.center = new Vector3(0, 0.5f, 0);
         }
 
         isCrouching = !isCrouching;

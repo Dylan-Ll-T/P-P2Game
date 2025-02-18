@@ -22,6 +22,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
+    [SerializeField] int headshotMult; // Dylan's Addition
 
     //Delvin's Additions
     [SerializeField] GameObject shootSound;
@@ -154,6 +155,14 @@ public class playerController : MonoBehaviour, IDamage
         {
             Debug.Log(hit.collider.name);
 
+            //Dylan's Additions
+            int endDamage = shootDamage * 2;
+            if(hit.collider.CompareTag("EnemyHead"))
+            {
+                endDamage *= headshotMult;
+            }
+            //End of Dylan's Additions
+
             //Delvin's Additions
             if (shootTimer == 0)
             {
@@ -166,7 +175,7 @@ public class playerController : MonoBehaviour, IDamage
 
             if (dmg != null)
             {
-                dmg.takeDamage(shootDamage);
+                dmg.takeDamage(endDamage); //Edited by Dylan
             }
         }
     }

@@ -154,12 +154,14 @@ public class playerController : MonoBehaviour, IDamage
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
             Debug.Log(hit.collider.name);
-
+            
             //Dylan's Additions
-            int endDamage = shootDamage * 2;
+            int endDamage = shootDamage;
+            bool headshot = false;
             if(hit.collider.CompareTag("EnemyHead"))
             {
                 endDamage *= headshotMult;
+                headshot = true;
             }
             //End of Dylan's Additions
 
@@ -171,12 +173,26 @@ public class playerController : MonoBehaviour, IDamage
             }
             //End of Delvin's Additions
 
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
-
-            if (dmg != null)
+            //Edited by Dylan
+            if (headshot)
             {
-                dmg.takeDamage(endDamage); //Edited by Dylan
+                IDamage dmg = hit.collider.GetComponentInParent<IDamage>();
+
+                if (dmg != null)
+                {
+                    dmg.takeDamage(endDamage);
+                }
             }
+            else
+            {
+                IDamage dmg = hit.collider.GetComponent<IDamage>();
+
+                if (dmg != null)
+                {
+                    dmg.takeDamage(endDamage); 
+                }
+            }
+            //End of Dylan's Edit
         }
     }
     //Delvin's Additions

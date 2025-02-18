@@ -2,6 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class gamemanager : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class gamemanager : MonoBehaviour
     public bool isPause;
     public GameObject player;
     public playerController playerScript;
+
+    // Yong's Additon
+    public Image dashBar;
+    // End 
 
     int goalCount;
 
@@ -90,5 +95,11 @@ public class gamemanager : MonoBehaviour
         menuActive = menuLose;
         menuActive.SetActive(true);
     }
-
+    //Yong's Addition
+    public void UpdateDashUI(int currentDashes, int maxDashes)
+    {
+        if (dashBar != null)
+            dashBar.fillAmount = (float)currentDashes / maxDashes;
+    }
+    // End
 }

@@ -8,29 +8,29 @@ public class playerController : MonoBehaviour, IDamage
     [Header("Movement Settings")]
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
-    [SerializeField] float HP;
+    [SerializeField] int HP;
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpSpeed;
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
 
-    //[Header("Aiming Settings")]
-    //[SerializeField] float aimSpeed;
+    [Header("Aiming Settings")]
+    [SerializeField] float aimSpeed;
 
-    //[Header("Shooting Settings")]
-    //[SerializeField] int shootDamage;
-    //[SerializeField] float shootRate;
-    //[SerializeField] int shootDist;
+    [Header("Shooting Settings")]
+    [SerializeField] int shootDamage;
+    [SerializeField] float shootRate;
+    [SerializeField] int shootDist;
 
-    ////Delvin's Additions
-    //[SerializeField] GameObject shootSound;
-    //public ParticleSystem muzzleFlash;
+    //Delvin's Additions
+    [SerializeField] GameObject shootSound;
+    public ParticleSystem muzzleFlash;
 
-    //[Header("Weapon Settings")]
-    //[SerializeField] GameObject gun;
-    //[SerializeField] GameObject hipPos;
-    //[SerializeField] GameObject aimPos;
+    [Header("Weapon Settings")]
+    [SerializeField] GameObject gun;
+    [SerializeField] GameObject hipPos;
+    [SerializeField] GameObject aimPos;
     //End of Delvin's Additions
     [Header("Stamina Settings")]
     [SerializeField] float maxStamina;
@@ -39,7 +39,11 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float staminaRegenDelay;
     [SerializeField] Image staminaBar;
 
-    [SerializeField] WeaponController weaponController;
+    [Header("Dash Settings")]
+    [SerializeField] int maxDashCount;
+    [SerializeField] float dashSpeed;
+    [SerializeField] float dashDuration;
+
 
     // Private variables
     int jumpCount;
@@ -50,28 +54,34 @@ public class playerController : MonoBehaviour, IDamage
     float currentStamina;
     float timeSinceLastSprint;
     int baseSpeed;
-    float HPOrig;
+    int HPOrig;
 
-    private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
-    private Vector3 playerScale = new Vector3(1, 1, 1);
+    private bool isInfiniteStamina = false;
+    
     private bool isCrouching = false;
+
+    private int currentDashCount;
+    private bool isDashing = false;
 
     void Start()
     {
         HPOrig = HP;
-        //updatePlayerUI();
-        ////Delvin's Additions
-        //shootSound.SetActive(false);
-        ////End of Delvin's Additions
+        updatePlayerUI();
+        //Delvin's Additions
+        shootSound.SetActive(false);
+        //End of Delvin's Additions
 
         baseSpeed = speed;
         currentStamina = maxStamina;
         if (staminaBar) staminaBar.fillAmount = 1f;
+
+        currentDashCount = maxDashCount;
+        gamemanager.instance.UpdateDashUI(currentDashCount, maxDashCount);
     }
 
     void Update()
     {
-        //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.yellow);
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.yellow);
 
         movement();
         HandleStamina();
@@ -82,16 +92,21 @@ public class playerController : MonoBehaviour, IDamage
             ToggleCrouch();
         }
 
-        ////Delvin's Additions
-        //if (Input.GetKey(KeyCode.Mouse1))
-        //{
-        //    gun.transform.position = Vector3.Lerp(gun.transform.position, aimPos.transform.position, aimSpeed);
-        //}
-        //else
-        //{
-        //    gun.transform.position = Vector3.Lerp(gun.transform.position, hipPos.transform.position, aimSpeed);
-        //}
-        ////End of Delvin's Additions
+        //Delvin's Additions
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            gun.transform.position = Vector3.Lerp(gun.transform.position, aimPos.transform.position, aimSpeed);
+        }
+        else
+        {
+            gun.transform.position = Vector3.Lerp(gun.transform.position, hipPos.transform.position, aimSpeed);
+        }
+        //End of Delvin's Additions
+
+        if (Input.GetButtonDown("Dash") && !isDashing && currentDashCount > 0)
+        {
+            StartCoroutine(Dash());
+        }
     }
 
     void movement()
@@ -111,12 +126,12 @@ public class playerController : MonoBehaviour, IDamage
         controller.Move(playerVel * Time.deltaTime);
         playerVel.y -= gravity * Time.deltaTime;
 
-        //shootTimer += Time.deltaTime;
+        shootTimer += Time.deltaTime;
 
-        //if (Input.GetButton("Fire1") && shootTimer >= shootRate)
-        //{
-        //    shoot();
-        //}
+        if (Input.GetButton("Fire1") && shootTimer >= shootRate)
+        {
+            shoot();
+        }
     }
 
     void sprint()
@@ -141,56 +156,58 @@ public class playerController : MonoBehaviour, IDamage
             if (isCrouching)
             {
                 controller.height = 2f;
-                controller.center = Vector3.zero;
+                controller.center = Vector3.zero; 
                 isCrouching = false;
             }
         }
     }
 
-    //void shoot()
-    //{
-    //    shootTimer = 0;
+    void shoot()
+    {
+        shootTimer = 0;
+       
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
+        {
+            Debug.Log(hit.collider.name);
 
-    //    RaycastHit hit;
-    //    if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
-    //    {
-    //        Debug.Log(hit.collider.name);
+            //Delvin's Additions
+            if (shootTimer == 0)
+            {
+                StartCoroutine(Shoot());
+                muzzleFlash.Play();
+            }
+            //End of Delvin's Additions
 
-    //        //Delvin's Additions
-    //        if (shootTimer == 0)
-    //        {
-    //            StartCoroutine(Shoot());
-    //            muzzleFlash.Play();
-    //        }
-    //        //End of Delvin's Additions
+            IDamage dmg = hit.collider.GetComponent<IDamage>();
 
-    //        IDamage dmg = hit.collider.GetComponent<IDamage>();
-
-    //        if (dmg != null)
-    //        {
-    //            dmg.takeDamage(shootDamage);
-    //        }
-    //    }
-    //}
+            if (dmg != null)
+            {
+                dmg.takeDamage(shootDamage);
+            }
+        }
+    }
     //Delvin's Additions
-    //IEnumerator Shoot()
-    //{
-    //    shootSound.SetActive(true);
-    //    yield return new WaitForSeconds(shootRate);
-    //    shootSound.SetActive(false);
-    //}
-    ////End of Delvin's Additions
+    IEnumerator Shoot()
+    {
+        shootSound.SetActive(true);
+        yield return new WaitForSeconds(shootRate);
+        shootSound.SetActive(false);
+    }
+    //End of Delvin's Additions
     void ToggleCrouch()
     {
         if (isCrouching)
         {
-            transform.localScale = playerScale;
-            transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+            // Stand up
+            controller.height = 2f;
+            controller.center = Vector3.zero;
         }
         else
         {
-            transform.localScale = crouchScale;
-            transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+            // Crouch
+            controller.height = 1f;
+            controller.center = new Vector3(0, 0.5f, 0);
         }
 
         isCrouching = !isCrouching;
@@ -198,6 +215,14 @@ public class playerController : MonoBehaviour, IDamage
 
     void HandleStamina()
     {
+
+        if (isInfiniteStamina)
+        {
+            currentStamina = maxStamina;
+            UpdateStaminaUI();
+            return;
+        }
+
         bool isMoving = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
         bool trySprint = Input.GetButton("Sprint");
 
@@ -241,10 +266,10 @@ public class playerController : MonoBehaviour, IDamage
             staminaBar.fillAmount = currentStamina / maxStamina;
     }
 
-    public void takeDamage(float amount)
+    public void takeDamage(int amount)
     {
         HP -= amount;
-
+        
         updatePlayerUI();
         StartCoroutine(flashDamageScreen());
 
@@ -262,14 +287,46 @@ public class playerController : MonoBehaviour, IDamage
     }
 
     void updatePlayerUI()
-    {
+    {     
         gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
     }
+
+    public void ActivateInfiniteStamina(float duration)
+    {
+        StartCoroutine(InfiniteStaminaRoutine(duration));
+    }
+
+    private IEnumerator InfiniteStaminaRoutine(float duration)
+    {
+        isInfiniteStamina = true;
+        currentStamina = maxStamina;
+        UpdateStaminaUI();
+        yield return new WaitForSeconds(duration);
+        isInfiniteStamina = false;
+    }
+
+    IEnumerator Dash()
+    {
+        isDashing = true;
+        currentDashCount--;
+        gamemanager.instance.UpdateDashUI(currentDashCount, maxDashCount);
+
+        float startTime = Time.time;
+        Vector3 dashDirection = moveDir.normalized;
+
+        while (Time.time < startTime + dashDuration)
+        {
+            controller.Move(dashDirection * dashSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        isDashing = false;
+    }
+
+    public void RefillDash()
+    {
+        currentDashCount = maxDashCount;
+        gamemanager.instance.UpdateDashUI(currentDashCount, maxDashCount);
+    }
+
 }
-
-
-
-
-
-
-

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29d5274ef1452849bf04ca6cacfb178, type: 3}
+  m_Name: Gun Stats Rifle
+  m_EditorClassIdentifier: 
+  model: {fileID: 4016464049236166835, guid: 9e6b8bb4b20cc3c408be85e3aed1b16a, type: 3}
+  shootDamage: 2
+  shootDistance: 1000
+  shootRate: 0.1
+  ammoCurrent: 11
+  ammoMax: 30
+  hitEffect: {fileID: 970440554703164915, guid: 47096eff328e11a418ace7db2d72aa97, type: 3}
+  AimMuzzleFlash: {fileID: 6055551231393481856, guid: a179cc8d9eba23f4a9ed452a1174304d, type: 3}
+  HipMuzzleFlash: {fileID: 6055551231393481856, guid: 1cf6903e6f077cf48bdd41a8c6a2180c, type: 3}
+  shootSound: {fileID: 8300000, guid: 428d41424960c6d47b978de66fd34d1b, type: 3}
+  shootVol: 0.3
+  AimMuzzleFlashPos: {fileID: 404316139985504708, guid: abb9cd8eb7dc8154696df312c40d489a, type: 3}
+  HipMuzzleFlashPos: {fileID: 404316139985504708, guid: 65fc2d920f08ec4418848584d0dc9638, type: 3}
+  reloadSound: {fileID: 8300000, guid: 3cf68aa920583b14eb500f1ce4ab439d, type: 3}
+  reloadVol: 0.3
+  hipPos: {fileID: 3127036983872897149, guid: 71d16f1e69fa11844bafb57d1baefed7, type: 3}
+  aimPos: {fileID: 2243211417340263236, guid: e26ac9e14d927634fba01cc1c4dfdfa2, type: 3}
+  aimSpeed: 20

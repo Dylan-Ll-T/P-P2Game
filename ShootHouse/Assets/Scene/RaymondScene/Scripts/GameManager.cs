@@ -86,7 +86,7 @@ public class gamemanager : MonoBehaviour
     }
     public void updateAmmo(int currentAmmo, int maxAmmo)
     {
-        Ammo.text = currentAmmo + " / " + maxAmmo;
+        Ammo.text = currentAmmo.ToString() + " / " + maxAmmo.ToString();
     }
 
     public void youLose()

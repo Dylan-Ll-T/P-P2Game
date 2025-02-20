@@ -5,12 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scene/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scene/Delvin's Scene/Newest scene/Latest.unity
-    guid: 604f82aa2562dcb4bb3821d4b8cabee4
+    path: Assets/Levels/Latest.unity
+    guid: d8f0ddf80d3e78b48b63825aa4312d6c
+  - enabled: 1
+    path: Assets/Levels/OutDoor/OutDoor.unity
+    guid: 8eab8b57359854c47b317f105e70215b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

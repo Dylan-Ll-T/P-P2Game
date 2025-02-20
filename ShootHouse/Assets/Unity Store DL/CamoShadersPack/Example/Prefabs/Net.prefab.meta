@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: c32a844d306c38a4c82c573ece050c6b
+labels:
+- Camouflage
+- Camo
+timeCreated: 1429213445
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35587
+  packageName: Camo Shaders Pack
+  packageVersion: 1.1
+  assetPath: Assets/CamoShadersPack/Example/Prefabs/Net.prefab
+  uploadId: 112285

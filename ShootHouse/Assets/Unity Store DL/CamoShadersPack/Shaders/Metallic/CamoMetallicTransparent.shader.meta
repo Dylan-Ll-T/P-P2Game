@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a98da7b8fd240944b96608a688da557a
+timeCreated: 1429730668
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35587
+  packageName: Camo Shaders Pack
+  packageVersion: 1.1
+  assetPath: Assets/CamoShadersPack/Shaders/Metallic/CamoMetallicTransparent.shader
+  uploadId: 112285

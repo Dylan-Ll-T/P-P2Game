@@ -19,4 +19,9 @@ public class DashRefill : MonoBehaviour, IPickUp
             OnPickup(other.gameObject);
         }
     }
+
+    public void GetGunStats(GunStats gun)
+    {
+        throw new System.NotImplementedException();
+    }
 }

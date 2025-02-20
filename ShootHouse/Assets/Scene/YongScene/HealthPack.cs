@@ -21,4 +21,9 @@ public class HealthPack : MonoBehaviour, IPickUp
             OnPickup(other.gameObject);
         }
     }
+
+    void IPickUp.GetGunStats(GunStats gun)
+    {
+        throw new System.NotImplementedException();
+    }
 }

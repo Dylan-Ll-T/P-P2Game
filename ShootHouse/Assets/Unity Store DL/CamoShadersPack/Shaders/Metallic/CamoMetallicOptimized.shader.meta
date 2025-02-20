@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 63e41f74e1d130d4d8c327269256f5de
+timeCreated: 1430247217
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35587
+  packageName: Camo Shaders Pack
+  packageVersion: 1.1
+  assetPath: Assets/CamoShadersPack/Shaders/Metallic/CamoMetallicOptimized.shader
+  uploadId: 112285

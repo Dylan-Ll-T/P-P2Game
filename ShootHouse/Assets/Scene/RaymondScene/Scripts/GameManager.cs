@@ -12,7 +12,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] TMP_Text goalCountText;
-
+    [SerializeField] GameObject menuLeaderBoard;
     public Image playerHPBar;
     public GameObject playerDamageScreen;
     public bool isPause;
@@ -77,6 +77,7 @@ public class gamemanager : MonoBehaviour
             menuActive = menuWin;
             menuActive.SetActive(true);
         }
+
     }
 
     public void youLose()

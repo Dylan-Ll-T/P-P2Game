@@ -154,7 +154,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
     }
 
-    // Doesn't do anything yet.Not called.
     IEnumerator flashRed()
     {
         model.material.color = Color.red;

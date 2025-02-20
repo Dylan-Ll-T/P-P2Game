@@ -5,53 +5,47 @@ using System.Linq;
 
 public class HighScores : MonoBehaviour
 {
-    [SerializeField] private GameObject highScorePanel; // The entire leaderboard UI
-    [SerializeField] private TMP_InputField nameInputField; // Player name input field
-    [SerializeField] private TextMeshProUGUI currentRunText; // Panel for the current run
-    [SerializeField] private TextMeshProUGUI[] previousRunTexts; // 4 panels for past runs
-    [SerializeField] private Timer timerScript; // Reference to Timer script
+    [SerializeField] private GameObject highScorePanel;
+    [SerializeField] private TMP_InputField nameInputField; 
+    [SerializeField] private TextMeshProUGUI currentRunText; 
+    [SerializeField] private TextMeshProUGUI[] previousRunTexts;
+    [SerializeField] private Timer timerScript; 
 
-    private List<(string playerName, float time)> pastRuns = new List<(string, float)>(); // Stores previous runs
+    private List<(string playerName, float time)> pastRuns = new List<(string, float)>(); 
 
     void Start()
     {
-        highScorePanel.SetActive(false); // Hide leaderboard at start
+        highScorePanel.SetActive(false);
     }
 
     public void ShowHighScorePanel()
     {
-        if (timerScript == null)
-        {
-            Debug.LogError("Timer script is not assigned in HighScores!");
-            return;
-        }
+       
 
-        highScorePanel.SetActive(true); // Show leaderboard
-        timerScript.StopTimer(); // Stop the timer
+        highScorePanel.SetActive(true); 
+        timerScript.StopTimer(); 
 
-        float currentRunTime = timerScript.GetElapsedTime(); // Get elapsed time
-        currentRunText.text = $"Current Run: {FormatTime(currentRunTime)}"; // Show current time
-        nameInputField.text = ""; // Clear name input
+        float currentRunTime = timerScript.GetElapsedTime();
+        currentRunText.text = $"Current Run: {FormatTime(currentRunTime)}";
+        nameInputField.text = "";
     }
 
     public void SubmitScore()
     {
-        float currentRunTime = timerScript.GetElapsedTime(); // Get current run time
-        string playerName = nameInputField.text.Trim(); // Get input name
+        float currentRunTime = timerScript.GetElapsedTime();
+        string playerName = nameInputField.text.Trim(); 
 
         if (string.IsNullOrEmpty(playerName))
         {
-            playerName = "Player"; // Default name
+            playerName = "Player"; 
         }
 
         // Store the new run in the past runs list
         pastRuns.Add((playerName, currentRunTime));
-        pastRuns = pastRuns.OrderBy(run => run.time).Take(4).ToList(); // Keep only 4 past runs
-
-        Debug.Log($"New Score: {playerName} - {FormatTime(currentRunTime)}");
+        pastRuns = pastRuns.OrderBy(run => run.time).Take(4).ToList();
 
         UpdateLeaderboardUI();
-        highScorePanel.SetActive(false); // Hide leaderboard after submission
+        highScorePanel.SetActive(false);
     }
 
     private void UpdateLeaderboardUI()
@@ -64,13 +58,13 @@ public class HighScores : MonoBehaviour
             }
             else
             {
-                previousRunTexts[i].text = $"{i + 1}. ---"; // Empty slot
+                previousRunTexts[i].text = $"{i + 1}. ---";
             }
         }
 
     }
-
     private string FormatTime(float time)
+
     {
         int minutes = Mathf.FloorToInt(time / 60);
         int seconds = Mathf.FloorToInt(time % 60);

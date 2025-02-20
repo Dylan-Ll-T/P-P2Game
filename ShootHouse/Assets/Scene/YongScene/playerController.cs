@@ -59,6 +59,8 @@ public class playerController : MonoBehaviour, IDamage
     private bool isInfiniteStamina = false;
     
     private bool isCrouching = false;
+    private float originalHeight;
+    private Vector3 originalCenter;
 
     private int currentDashCount;
     private bool isDashing = false;
@@ -77,6 +79,9 @@ public class playerController : MonoBehaviour, IDamage
 
         currentDashCount = maxDashCount;
         gamemanager.instance.UpdateDashUI(currentDashCount, maxDashCount);
+
+        originalHeight = controller.height;
+        originalCenter = controller.center;
     }
 
     void Update()
@@ -155,8 +160,8 @@ public class playerController : MonoBehaviour, IDamage
 
             if (isCrouching)
             {
-                controller.height = 2f;
-                controller.center = Vector3.zero; 
+                controller.height = originalHeight;
+                controller.center = originalCenter;
                 isCrouching = false;
             }
         }
@@ -200,14 +205,14 @@ public class playerController : MonoBehaviour, IDamage
         if (isCrouching)
         {
             // Stand up
-            controller.height = 2f;
-            controller.center = Vector3.zero;
+            controller.height = originalHeight;
+            controller.center = originalCenter;
         }
         else
         {
             // Crouch
-            controller.height = 1f;
-            controller.center = new Vector3(0, 0.5f, 0);
+            controller.height = originalHeight / 2f;
+            controller.center = new Vector3(originalCenter.x, originalCenter.y * 0.5f, originalCenter.z);
         }
 
         isCrouching = !isCrouching;

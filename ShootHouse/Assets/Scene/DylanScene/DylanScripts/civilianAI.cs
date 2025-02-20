@@ -37,8 +37,17 @@ public class civilianAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        roam();
+        checkRoam();
     }
+
+    void checkRoam()
+    {
+        if (roamTimer > roamPauseTime && agent.remainingDistance < 0.01f)
+        {
+            roam();
+        }
+    }
+
     void roam()
     {
         roamTimer = 0;

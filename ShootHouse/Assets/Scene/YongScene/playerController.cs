@@ -14,12 +14,25 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
     [SerializeField] int jumpSpeed;
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
+  
+
+    // Muzzle Flash Quad (GameObjects)
+    private GameObject hipMuzzleFlashQuad;
+    private GameObject aimMuzzleFlashQuad;
+
+    public GameObject pistolHipMuzzleFlashQuad;
+    public GameObject pistolAimMuzzleFlashQuad;
+    public GameObject rifleHipMuzzleFlashQuad;
+    public GameObject rifleAimMuzzleFlashQuad;
+    public GameObject shotgunHipMuzzleFlashQuad;
+    public GameObject shotgunAimMuzzleFlashQuad;
+    private GameObject muzzleFlashQuad;
+
+    // Muzzle Flash Positions (Transforms)
     private Transform hipMuzzleFlashPos;
     private Transform aimMuzzleFlashPos;
-    private ParticleSystem hipMuzzleFlashEffect;
-    private ParticleSystem aimMuzzleFlashEffect;
 
-    
+
     private int currentAmmo;
     private int maxAmmo;
    
@@ -212,21 +225,17 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
-            // Instantiate bullet impact effect
             ParticleSystem effect = Instantiate(gunList[gunListPos].hitEffect, hit.point, Quaternion.identity);
             Destroy(effect.gameObject, 1f);
 
-            // Apply damage if enemy is hit
             IDamage dmg = hit.collider.GetComponent<IDamage>();
             if (dmg != null)
             {
                 dmg.takeDamage(shootDamage);
             }
         }
-
-        
-        PlayMuzzleFlash();
-        
+    
+        PlayMuzzleFlash(); // Trigger the muzzle flash quad
     }
     public IEnumerator ShootEffect()
     {
@@ -239,31 +248,79 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
 
     void PlayMuzzleFlash()
     {
+        // Check if the player has a gun
+        if (gunList.Count == 0) return;
+
+        // Get the current weapon stats based on the selected gun
         GunStats currentGun = gunList[gunListPos];
 
-        // Choose the correct muzzle flash effect and position based on aiming state
-        ParticleSystem muzzleFlashEffect = isAiming ? currentGun.AimMuzzleFlash : currentGun.HipMuzzleFlash;
-        Transform muzzleFlashPos = isAiming ? currentGun.AimMuzzleFlashPos : currentGun.HipMuzzleFlashPos;
+        // Declare the muzzle flash quad to be used
+        GameObject muzzleFlashQuad = null;
 
-        if (muzzleFlashEffect != null && muzzleFlashPos != null)
+        // Check which gun is selected and assign the correct muzzle flash
+        if (currentGun.gunName == "Pistol")
         {
-            // Instantiate muzzle flash at the correct position and rotation
-            ParticleSystem muzzleFlashInstance = Instantiate(
-                muzzleFlashEffect,
-                muzzleFlashPos.position,
-                muzzleFlashPos.rotation
-            );
+            if (isAiming)
+            {
+                muzzleFlashQuad = pistolAimMuzzleFlashQuad;
+                // Set the position for pistol's aim mode
+                muzzleFlashQuad.transform.localPosition = pistolAimMuzzleFlashQuad.transform.localPosition;
+            }
+            else
+            {
+                muzzleFlashQuad = pistolHipMuzzleFlashQuad;
+                // Set the position for pistol's hip mode
+                muzzleFlashQuad.transform.localPosition = pistolHipMuzzleFlashQuad.transform.localPosition;
+            }
+        }
+        else if (currentGun.gunName == "Rifle")
+        {
+            if (isAiming)
+            {
+                muzzleFlashQuad = rifleAimMuzzleFlashQuad;
+                // Set the position for rifle's aim mode
+                muzzleFlashQuad.transform.localPosition = rifleAimMuzzleFlashQuad.transform.localPosition;
+            }
+            else
+            {
+                muzzleFlashQuad = rifleHipMuzzleFlashQuad;
+                // Set the position for rifle's hip mode
+                muzzleFlashQuad.transform.localPosition = rifleHipMuzzleFlashQuad.transform.localPosition;
+            }
+        }
+        else if (currentGun.gunName == "Shotgun")
+        {
+            if (isAiming)
+            {
+                muzzleFlashQuad = shotgunAimMuzzleFlashQuad;
+                // Set the position for shotgun's aim mode
+                muzzleFlashQuad.transform.localPosition = shotgunAimMuzzleFlashQuad.transform.localPosition;
+            }
+            else
+            {
+                muzzleFlashQuad = shotgunHipMuzzleFlashQuad;
+                // Set the position for shotgun's hip mode
+                muzzleFlashQuad.transform.localPosition = shotgunHipMuzzleFlashQuad.transform.localPosition;
+            }
+        }
 
-            // Play the muzzle flash effect
-            muzzleFlashInstance.Play();
+        // Ensure we found the correct muzzle flash
+        if (muzzleFlashQuad != null)
+        {
+            // Start a coroutine to deactivate it after a brief delay
+            StartCoroutine(ShowMuzzleFlash(muzzleFlashQuad));
 
-            // Destroy the muzzle flash instance after it finishes
-            Destroy(muzzleFlashInstance.gameObject, 1f); // Adjust duration as needed
+            Debug.Log("Muzzle Flash Quad: " + muzzleFlashQuad);
         }
     }
 
-
-
+    // Coroutine to enable and disable muzzle flash
+    IEnumerator ShowMuzzleFlash(GameObject muzzleFlashQuad)
+    {
+        muzzleFlashQuad.SetActive(true);  // Activate the muzzle flash
+        yield return new WaitForSeconds(0.02f);  // Flash duration
+        muzzleFlashQuad.SetActive(false);  // Deactivate the muzzle flash
+    }
     void ToggleCrouch()
     {
         if (isCrouching)
@@ -437,36 +494,69 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
 
     void ChangeGun()
     {
-        if (gunList.Count == 0) return; // Prevent errors if there are no guns
+        if (gunList.Count == 0) return; // Ensure there are guns in the list
 
-        GunStats currentGun = gunList[gunListPos]; // Get the selected gun stats
+        GunStats currentGun = gunList[gunListPos]; // Get current gun stats
 
         // Activate the gun model
-        gunModel.SetActive(true);
+        if (gunModel != null)
+        {
+            gunModel.SetActive(true);
 
-        // Set gun stats
+            // Update the gun's mesh and material
+            MeshFilter meshFilter = gunModel.GetComponent<MeshFilter>();
+            MeshRenderer meshRenderer = gunModel.GetComponent<MeshRenderer>();
+
+            if (meshFilter != null && currentGun.model != null)
+                meshFilter.sharedMesh = currentGun.model.GetComponent<MeshFilter>().sharedMesh;
+
+            if (meshRenderer != null && currentGun.model != null)
+                meshRenderer.sharedMaterial = currentGun.model.GetComponent<MeshRenderer>().sharedMaterial;
+
+            // Set gun position & rotation
+            gunModel.transform.localPosition = currentGun.hipPos.localPosition;
+            gunModel.transform.localRotation = currentGun.hipPos.localRotation;
+        }
+
+        // Update shooting stats
         shootDamage = currentGun.shootDamage;
         shootRate = currentGun.shootRate;
         shootDist = currentGun.shootDistance;
 
-        // Update the mesh and material of the gun model
-        gunModel.GetComponent<MeshFilter>().sharedMesh = currentGun.model.GetComponent<MeshFilter>().sharedMesh;
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = currentGun.model.GetComponent<MeshRenderer>().sharedMaterial;
+        // Assign muzzle flash quads based on gun type
+        if (currentGun.gunName == "Pistol")
+        {
+            hipMuzzleFlashQuad = pistolHipMuzzleFlashQuad;
+            aimMuzzleFlashQuad = pistolAimMuzzleFlashQuad;
+        }
+        else if (currentGun.gunName == "Rifle")
+        {
+            hipMuzzleFlashQuad = rifleHipMuzzleFlashQuad;
+            aimMuzzleFlashQuad = rifleAimMuzzleFlashQuad;
+        }
+        else if (currentGun.gunName == "Shotgun")
+        {
+            hipMuzzleFlashQuad = shotgunHipMuzzleFlashQuad;
+            aimMuzzleFlashQuad = shotgunAimMuzzleFlashQuad;
+        }
 
-        // Set gun position and rotation based on the hip position
-        gunModel.transform.localPosition = currentGun.hipPos.localPosition;
-        gunModel.transform.localRotation = currentGun.hipPos.localRotation;
+        // Disable muzzle flashes at the start
+        if (hipMuzzleFlashQuad) hipMuzzleFlashQuad.SetActive(false);
+        if (aimMuzzleFlashQuad) aimMuzzleFlashQuad.SetActive(false);
 
-        // Set muzzle flash positions and effects for both hip-fire and aim
-        hipMuzzleFlashPos = currentGun.HipMuzzleFlashPos;
-        aimMuzzleFlashPos = currentGun.AimMuzzleFlashPos;
-        hipMuzzleFlashEffect = currentGun.HipMuzzleFlash;
-        aimMuzzleFlashEffect = currentGun.AimMuzzleFlash;
+        // Preserve ammo count when switching weapons
+        if (currentGun.ammoCurrent > 0)
+        {
+            currentAmmo = currentGun.ammoCurrent;
+        }
+        else
+        {
+            currentAmmo = currentGun.ammoMax; // Reset if empty
+        }
 
-        // Update ammo count
-        currentAmmo = currentGun.ammoCurrent;
         maxAmmo = currentGun.ammoMax;
 
+        // Update the UI ammo count
         gamemanager.instance.updateAmmo(currentAmmo, maxAmmo);
     }
 

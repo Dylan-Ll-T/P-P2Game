@@ -319,7 +319,7 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
             
             StartCoroutine(ShowMuzzleFlash(muzzleFlashQuad));
 
-            Debug.Log("Muzzle Flash Quad: " + muzzleFlashQuad);
+            //Debug.Log("Muzzle Flash Quad: " + muzzleFlashQuad);
         }
     }
 

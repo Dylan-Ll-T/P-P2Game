@@ -764,7 +764,7 @@ MonoBehaviour:
   - {fileID: 256985318}
   spawnAmount: 1
   spawnForceRange: {x: 2, y: 5}
-  destroyedEffect: {fileID: 159918, guid: a0040bf7072bc2f4e82d887d50a9c5e2, type: 3}
+  destroyedEffect: {fileID: 3023836405887259933, guid: ce340c8fb0d286d45920877baf8a363c, type: 3}
 --- !u!4 &564834960
 Transform:
   m_ObjectHideFlags: 0
@@ -894,7 +894,7 @@ MonoBehaviour:
   - {fileID: 3304878163139979421, guid: caa373b8f136b12408dc2f4d5a6c3a38, type: 3}
   spawnAmount: 3
   spawnForceRange: {x: 2, y: 5}
-  destroyedEffect: {fileID: 159918, guid: a0040bf7072bc2f4e82d887d50a9c5e2, type: 3}
+  destroyedEffect: {fileID: 634140522703829823, guid: 614b10c48a783b1498f8267c5de82251, type: 3}
 --- !u!4 &765431004
 Transform:
   m_ObjectHideFlags: 0
@@ -1024,7 +1024,7 @@ MonoBehaviour:
   - {fileID: 4016464049236166835, guid: 9e6b8bb4b20cc3c408be85e3aed1b16a, type: 3}
   spawnAmount: 1
   spawnForceRange: {x: 2, y: 5}
-  destroyedEffect: {fileID: 159918, guid: a0040bf7072bc2f4e82d887d50a9c5e2, type: 3}
+  destroyedEffect: {fileID: 6705593710656706411, guid: 9447ed8887dbc1a48ad81335087406b1, type: 3}
 --- !u!4 &797613690
 Transform:
   m_ObjectHideFlags: 0
@@ -1565,7 +1565,7 @@ MonoBehaviour:
   - {fileID: 1928155563}
   spawnAmount: 1
   spawnForceRange: {x: 2, y: 5}
-  destroyedEffect: {fileID: 159918, guid: a0040bf7072bc2f4e82d887d50a9c5e2, type: 3}
+  destroyedEffect: {fileID: 755187870552819380, guid: 4f97dc7fadc9a2743873a02d2421ec07, type: 3}
 --- !u!4 &1326467472
 Transform:
   m_ObjectHideFlags: 0
@@ -2113,7 +2113,7 @@ MonoBehaviour:
   - {fileID: 799101033}
   spawnAmount: 1
   spawnForceRange: {x: 2, y: 5}
-  destroyedEffect: {fileID: 159918, guid: a0040bf7072bc2f4e82d887d50a9c5e2, type: 3}
+  destroyedEffect: {fileID: 2116285410912993196, guid: 4ddbb60a0cf9fa5469686d5aa34ab6af, type: 3}
 --- !u!4 &1727018204
 Transform:
   m_ObjectHideFlags: 0
@@ -2676,6 +2676,10 @@ PrefabInstance:
     - target: {fileID: 3536477343651802957, guid: 5ce2fe23215f3d548b6ec267057f28a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 104.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3536477343651802957, guid: 5ce2fe23215f3d548b6ec267057f28a0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -100.59
       objectReference: {fileID: 0}
     - target: {fileID: 3536477343651802957, guid: 5ce2fe23215f3d548b6ec267057f28a0, type: 3}
       propertyPath: m_LocalPosition.z

@@ -21,6 +21,7 @@ public class GunStats : ScriptableObject
 
     public Transform hipPos;
     public Transform aimPos;
+
  
     public float aimSpeed = 10f;
 }

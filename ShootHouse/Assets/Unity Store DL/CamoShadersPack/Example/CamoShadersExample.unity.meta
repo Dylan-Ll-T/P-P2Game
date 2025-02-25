@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ff9c7b809b000044cb66a9cb6e0f1a5f
+timeCreated: 1428427366
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35587
+  packageName: Camo Shaders Pack
+  packageVersion: 1.1
+  assetPath: Assets/CamoShadersPack/Example/CamoShadersExample.unity
+  uploadId: 112285

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d950e6579856ec04f9b24e70d869f63f
+timeCreated: 1429737344
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35587
+  packageName: Camo Shaders Pack
+  packageVersion: 1.1
+  assetPath: Assets/CamoShadersPack/Shaders/Mobile/CamoMobileBumped.shader
+  uploadId: 112285

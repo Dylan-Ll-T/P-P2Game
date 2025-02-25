@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 949629f879ab51d46a8225f39289ed7b
+timeCreated: 1429731089
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35587
+  packageName: Camo Shaders Pack
+  packageVersion: 1.1
+  assetPath: Assets/CamoShadersPack/Shaders/Metallic/CamoMetallicOpaque.shader
+  uploadId: 112285

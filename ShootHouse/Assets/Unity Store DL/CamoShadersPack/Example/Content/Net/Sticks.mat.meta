@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 39f57535153c18f4b8c135b90439a51f
+timeCreated: 1428522720
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35587
+  packageName: Camo Shaders Pack
+  packageVersion: 1.1
+  assetPath: Assets/CamoShadersPack/Example/Content/Net/Sticks.mat
+  uploadId: 112285

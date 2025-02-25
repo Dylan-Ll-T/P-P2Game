@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cd2590f4646043c4d9b3486774f30980
+timeCreated: 1429214205
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35587
+  packageName: Camo Shaders Pack
+  packageVersion: 1.1
+  assetPath: Assets/CamoShadersPack/Example/Prefabs/Ground.prefab
+  uploadId: 112285

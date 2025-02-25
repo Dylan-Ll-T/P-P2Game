@@ -2,6 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class gamemanager : MonoBehaviour
 {
@@ -12,12 +13,17 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] TMP_Text goalCountText;
+    [SerializeField] TMP_Text Ammo;
 
     public Image playerHPBar;
     public GameObject playerDamageScreen;
     public bool isPause;
     public GameObject player;
     public playerController playerScript;
+
+    // Yong's Additon
+    public Image dashBar;
+    // End 
 
     int goalCount;
 
@@ -78,6 +84,10 @@ public class gamemanager : MonoBehaviour
             menuActive.SetActive(true);
         }
     }
+    public void updateAmmo(int currentAmmo, int maxAmmo)
+    {
+        Ammo.text = currentAmmo.ToString() + " / " + maxAmmo.ToString();
+    }
 
     public void youLose()
     {
@@ -85,5 +95,11 @@ public class gamemanager : MonoBehaviour
         menuActive = menuLose;
         menuActive.SetActive(true);
     }
-
+    //Yong's Addition
+    public void UpdateDashUI(int currentDashes, int maxDashes)
+    {
+        if (dashBar != null)
+            dashBar.fillAmount = (float)currentDashes / maxDashes;
+    }
+    // End
 }

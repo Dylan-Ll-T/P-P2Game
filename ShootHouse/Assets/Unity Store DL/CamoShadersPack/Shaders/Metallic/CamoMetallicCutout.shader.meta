@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 975888cedeca1de44ad4adf562189235
+timeCreated: 1429730343
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35587
+  packageName: Camo Shaders Pack
+  packageVersion: 1.1
+  assetPath: Assets/CamoShadersPack/Shaders/Metallic/CamoMetallicCutout.shader
+  uploadId: 112285

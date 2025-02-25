@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5a7d7f5cb4e92af47be950b2ff54390b
+timeCreated: 1429736379
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35587
+  packageName: Camo Shaders Pack
+  packageVersion: 1.1
+  assetPath: Assets/CamoShadersPack/Shaders/Specular/CamoSpecularOpaque.shader
+  uploadId: 112285

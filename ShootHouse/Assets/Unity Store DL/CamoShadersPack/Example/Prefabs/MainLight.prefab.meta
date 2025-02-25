@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: dd9d04ae701e47745afc3d0f0612de82
+timeCreated: 1428522787
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35587
+  packageName: Camo Shaders Pack
+  packageVersion: 1.1
+  assetPath: Assets/CamoShadersPack/Example/Prefabs/MainLight.prefab
+  uploadId: 112285

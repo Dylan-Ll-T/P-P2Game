@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 30307652e93c83d439cdf6044fa6b117
+timeCreated: 1429737592
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35587
+  packageName: Camo Shaders Pack
+  packageVersion: 1.1
+  assetPath: Assets/CamoShadersPack/Shaders/Mobile/CamoMobileSpecular.shader
+  uploadId: 112285

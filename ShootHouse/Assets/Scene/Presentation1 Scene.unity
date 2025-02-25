@@ -1240,14 +1240,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2620266764316926278}
-  - component: {fileID: 2620266764316926282}
+  - component: {fileID: 2620266764316926284}
   - component: {fileID: 2620266764307107584}
   - component: {fileID: 2620266764316926281}
   - component: {fileID: 2620266764316926279}
-  - component: {fileID: 2620266764316926283}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TT_demo_female
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1668,7 +1667,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 8
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1719,7 +1718,7 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.74, z: 0}
---- !u!114 &2620266764316926282
+--- !u!114 &2620266764316926284
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1728,43 +1727,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2620266764316507430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dda6c133d316a24458817b25d184d1ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d6448d5dd8ed284ab88d5a6805f1128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 2620266764302841442}
   agent: {fileID: 2620266764316926279}
   anim: {fileID: 2620266764307107584}
-  headPos: {fileID: 2620266764316927606}
   enemyHealth: 3
   animTransSpeed: 3
-  faceTargetSpeed: 3
-  FOV: 90
-  roamPauseTime: 3
-  roamDist: 10
-  bullet: {fileID: 1541718661690039945, guid: aba4f9c991b3da54fbd5480f7490503d, type: 3}
-  shootPos: {fileID: 2620266764316927606}
-  shootRate: 1
---- !u!135 &2620266764316926283
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2620266764316507430}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 15
-  m_Center: {x: 0, y: 0, z: 0}
+  roamPauseTime: 1
+  roamDist: 12
 --- !u!4 &2620266764316927556
 Transform:
   m_ObjectHideFlags: 0

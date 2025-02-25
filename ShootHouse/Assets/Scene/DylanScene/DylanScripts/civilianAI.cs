@@ -2,13 +2,16 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class civilianAI : MonoBehaviour
+public class civilianAI : MonoBehaviour, IDamage 
 {
     [Header("--Basics--")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] Animator anim;
 
     [SerializeField] int enemyHealth;
+    [SerializeField] int animTransSpeed;
+
 
     [Header("--Roaming--")]
     [SerializeField] int roamPauseTime;
@@ -37,6 +40,16 @@ public class civilianAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float agentSpeed = agent.velocity.normalized.magnitude;
+        float animCurSpeed = anim.GetFloat("Speed");
+
+
+
+        anim.SetFloat("Speed", Mathf.MoveTowards(animCurSpeed, agentSpeed, Time.deltaTime * animTransSpeed));
+
+        if (agent.remainingDistance < 0.01f)
+            roamTimer += Time.deltaTime;
+        
         checkRoam();
     }
 
@@ -83,7 +96,6 @@ public class civilianAI : MonoBehaviour
     {
         enemyHealth -= amount;
         StartCoroutine(flashRed());
-        agent.SetDestination(gamemanager.instance.player.transform.position);
         if (enemyHealth <= 0)
         {
             gamemanager.instance.updateGameGoal(-1);

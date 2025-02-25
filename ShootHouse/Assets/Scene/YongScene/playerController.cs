@@ -44,6 +44,7 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
     [SerializeField] float shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
+    [SerializeField] int headshotMult; // Dylan's Addition
     [SerializeField] GameObject gunModel;
     [SerializeField] List<GunStats> gunList = new List<GunStats>();
     [SerializeField] private Transform muzzleFlashPos;
@@ -244,16 +245,42 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
+            //Dylan's Additions
+            float endDamage = shootDamage;
+            bool headshot = false;
+            if (hit.collider.CompareTag("EnemyHead"))
+            {
+                endDamage *= headshotMult;
+                headshot = true;
+            }
+            //End of Dylan's Additions
+
             ParticleSystem effect = Instantiate(gunList[gunListPos].hitEffect, hit.point, Quaternion.identity);
             Destroy(effect.gameObject, 1f);
 
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
-            if (dmg != null)
+            //Edited by Dylan
+            if (headshot)
             {
-                dmg.takeDamage(shootDamage);
+                IDamage dmg = hit.collider.GetComponentInParent<IDamage>();
+
+                if (dmg != null)
+                {
+                    dmg.takeDamage(endDamage);
+                }
             }
+            else
+            {
+                IDamage dmg = hit.collider.GetComponent<IDamage>();
+
+                if (dmg != null)
+                {
+                    dmg.takeDamage(endDamage);
+                }
+            }
+            //End of Dylan's Edit
+
         }
-    
+
         PlayMuzzleFlash(); 
     }
     public IEnumerator ShootEffect()

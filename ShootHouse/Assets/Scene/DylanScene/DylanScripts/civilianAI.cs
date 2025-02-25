@@ -9,7 +9,7 @@ public class civilianAI : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
 
-    [SerializeField] int enemyHealth;
+    [SerializeField] float enemyHealth;
     [SerializeField] int animTransSpeed;
 
 
@@ -92,7 +92,7 @@ public class civilianAI : MonoBehaviour, IDamage
     //    }
     //}
 
-    public void takeDamage(int amount)
+    public void takeDamage(float amount)
     {
         enemyHealth -= amount;
         StartCoroutine(flashRed());

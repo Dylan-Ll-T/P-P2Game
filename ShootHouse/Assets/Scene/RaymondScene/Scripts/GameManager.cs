@@ -2,6 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class gamemanager : MonoBehaviour
 {
@@ -11,8 +12,8 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-    [SerializeField] GameObject FullMap;
     [SerializeField] TMP_Text goalCountText;
+    [SerializeField] TMP_Text Ammo;
 
     public Image playerHPBar;
     public GameObject playerDamageScreen;
@@ -20,13 +21,15 @@ public class gamemanager : MonoBehaviour
     public GameObject player;
     public playerController playerScript;
 
+    // Yong's Additon
+    public Image dashBar;
+    // End 
+
     int goalCount;
-    GameObject[] enemies;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
@@ -35,7 +38,6 @@ public class gamemanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ShowMap();
         if (Input.GetButtonDown("Cancel"))
         {
             if (menuActive == null)
@@ -82,6 +84,10 @@ public class gamemanager : MonoBehaviour
             menuActive.SetActive(true);
         }
     }
+    public void updateAmmo(int currentAmmo, int maxAmmo)
+    {
+        Ammo.text = currentAmmo.ToString() + " / " + maxAmmo.ToString();
+    }
 
     public void youLose()
     {
@@ -89,45 +95,11 @@ public class gamemanager : MonoBehaviour
         menuActive = menuLose;
         menuActive.SetActive(true);
     }
-
-    public void ShowMap()
+    //Yong's Addition
+    public void UpdateDashUI(int currentDashes, int maxDashes)
     {
-        if (Input.GetButtonDown("ShowMap"))
-        {
-            if (menuActive == null)
-            {
-                statePause();
-                menuActive = FullMap;
-                menuActive.SetActive(true);
-            }
-            else if (menuActive == FullMap)
-            {
-                stateUnpause();
-                menuActive.SetActive(false);
-                menuActive = null;
-            }
-        }
+        if (dashBar != null)
+            dashBar.fillAmount = (float)currentDashes / maxDashes;
     }
-
-
-    public GameObject FindClosestEnemy()
-    {
-        GameObject closest = null;
-        float minDistance = Mathf.Infinity;
-        float dist;
-
-        for (int i = 0; i < enemies.Length; i++)
-        {
-            if (enemies[i] != null)
-            {dist = Vector3.Distance(player.transform.position, enemies[i].transform.position);
-                if (dist < minDistance)
-                {
-                    minDistance = dist;
-                    closest = enemies[i];
-                }
-            }
-        }
-
-        return closest;
-    }
+    // End
 }

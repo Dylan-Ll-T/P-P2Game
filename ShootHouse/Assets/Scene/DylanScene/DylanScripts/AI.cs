@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Animator anim;
 
     [SerializeField] Transform headPos;
-    [SerializeField] int enemyHealth;
+    [SerializeField] float enemyHealth;
     [SerializeField] int animTransSpeed;
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int FOV;
@@ -104,7 +104,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 
-    public void takeDamage(int amount)
+    public void takeDamage(float amount)
     {
         enemyHealth -= amount;
         StartCoroutine(flashRed());

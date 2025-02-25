@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    public static Timer instance;  // Add this line to create a static reference
+    public static Timer instance;  
 
     [SerializeField] private TextMeshProUGUI timeText;
     public float elapsedTime;

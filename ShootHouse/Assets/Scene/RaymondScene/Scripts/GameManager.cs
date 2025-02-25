@@ -14,12 +14,13 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuLose;
     [SerializeField] TMP_Text goalCountText;
     [SerializeField] GameObject menuLeaderBoard;
+
+
     public Image playerHPBar;
     public GameObject playerDamageScreen;
     public bool isPause;
     public GameObject player;
     public playerController playerScript;
-
     // Yong's Additon
     public Image dashBar;
     // End 
@@ -81,8 +82,8 @@ public class gamemanager : MonoBehaviour
             statePause();
             menuActive = menuWin;
             menuActive.SetActive(true);
+  
         }
-
     }
 
     public void youLose()

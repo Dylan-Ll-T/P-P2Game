@@ -1,11 +1,18 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
+    public static Timer instance;  // Add this line to create a static reference
+
     [SerializeField] private TextMeshProUGUI timeText;
     public float elapsedTime;
     public bool isRunning = true;
+
+    void Awake()
+    {
+        instance = this; 
+    }
 
     void Update()
     {

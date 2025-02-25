@@ -5,6 +5,7 @@ public class Scores : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI currentRunText; 
     private Timer timer; 
+    private Vector3 previousRun;
 
     void Start()
     {

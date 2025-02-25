@@ -42,6 +42,7 @@ public class gamemanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ShowMap();
         if (Input.GetButtonDown("Cancel"))
         {
             if (menuActive == null)

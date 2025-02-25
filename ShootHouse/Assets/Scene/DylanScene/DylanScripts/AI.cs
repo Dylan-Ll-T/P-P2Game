@@ -14,6 +14,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int animTransSpeed;
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int FOV;
+    [SerializeField] int roamPauseTime;
+    [SerializeField] int roamDist;
 
 
     [SerializeField] GameObject bullet;
@@ -23,9 +25,13 @@ public class EnemyAI : MonoBehaviour, IDamage
     Color colorOrig;
 
     float shootTimer;
+    float roamTimer;
     float angleToPlayer;
+    float stoppingDistOrig;
 
     Vector3 playerDir;
+    Vector3 startingPos;
+
     bool playerInRange;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,8 +39,10 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         colorOrig = model.material.color;
         gamemanager.instance.updateGameGoal(1);
+        startingPos = transform.position;
+        stoppingDistOrig = agent.stoppingDistance;
     }
-    //T
+
     // Update is called once per frame
     void Update()
     {
@@ -45,10 +53,39 @@ public class EnemyAI : MonoBehaviour, IDamage
         shootTimer += Time.deltaTime;
 
         // Roam
+        if (agent.remainingDistance < 0.01f)
+            roamTimer += Time.deltaTime;
+
+        
         if (playerInRange && canSeePlayer())
         {
-
+            checkRoam();   
         }
+        else if (!playerInRange)
+        {
+            checkRoam();
+        }
+    }
+
+    void checkRoam()
+    {
+        if (roamTimer > roamPauseTime && agent.remainingDistance < 0.01f)
+        {
+            roam();
+        }
+    }
+    
+    void roam()
+    {
+        roamTimer = 0;
+        agent.stoppingDistance = 0;
+
+        Vector3 ranPos = Random.insideUnitSphere * roamDist;
+        ranPos += startingPos;
+
+        NavMeshHit hit;
+        NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
+        agent.SetDestination(hit.position);
     }
 
     bool canSeePlayer()
@@ -94,6 +131,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            agent.stoppingDistance = 0;
         }
     }
 
@@ -116,7 +154,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
     }
 
-    // Doesn't do anything yet.Not called.
     IEnumerator flashRed()
     {
         model.material.color = Color.red;

@@ -544,7 +544,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 241744797468148427}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.5785307, z: 0, w: 0.81566066}
+  m_LocalRotation: {x: 0, y: 0.57853407, z: 0, w: 0.8156583}
   m_LocalPosition: {x: 75, y: -96.890015, z: 105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -552,7 +552,7 @@ Transform:
   - {fileID: 8565645653261298400}
   - {fileID: 3193188670799905176}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 70.695, z: 0}
 --- !u!114 &3100752526168584014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,6 +579,9 @@ MonoBehaviour:
   shootDamage: 1
   shootRate: 0.3
   shootDist: 150
+  headshotMult: 10
+  shootSound: {fileID: 0}
+  muzzleFlash: {fileID: 0}
   gun: {fileID: 2507354995783569718}
   hipPos: {fileID: 2573040416324069307}
   aimPos: {fileID: 7995729704031019188}

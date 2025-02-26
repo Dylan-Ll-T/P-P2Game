@@ -72,6 +72,8 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
     [Range(0, 1)][SerializeField] float audHurtVol;
     [Range(0, 1)][SerializeField] AudioClip[] audJump;
     [Range(0, 1)][SerializeField] float audJumpVol;
+    [SerializeField] AudioClip headShot;
+
 
     // Private variables
     int jumpCount;
@@ -152,7 +154,7 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
         {
             if (moveDir.magnitude > .3f && !isPlayerSteps)
             {
-                //StartCoroutine(playSteps());
+                StartCoroutine(playSteps());
             }
             jumpCount = 0;
             playerVel = Vector3.zero;
@@ -279,6 +281,7 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
             {
                 endDamage *= headshotMult;
                 headshot = true;
+                aud.PlayOneShot(headShot, .05f);
             }
             //End of Dylan's Additions
 
@@ -631,17 +634,22 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
 
     IEnumerator ReloadGun()
     {
-        if (isReloading) yield break; 
+        if (isReloading) yield break;
+
+        // Ensure gunListPos is valid at the beginning of the method
+        if (gunListPos < 0 || gunListPos >= gunList.Count)
+        {
+            Debug.LogError("Invalid gunListPos index: " + gunListPos);
+            yield break; // Exit the method if the index is invalid
+        }
 
         isReloading = true;
 
-    
         if (gunList[gunListPos].reloadSound != null)
         {
             aud.PlayOneShot(gunList[gunListPos].reloadSound, gunList[gunListPos].reloadVol);
         }
 
-    
         Quaternion originalRotation = gunModel.transform.localRotation;
         Quaternion reloadRotation = Quaternion.Euler(originalRotation.eulerAngles.x - 30, originalRotation.eulerAngles.y, originalRotation.eulerAngles.z);
 
@@ -658,7 +666,7 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
         yield return new WaitForSeconds(0.1f);
 
         elapsed = 0;
-     
+
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
@@ -666,14 +674,10 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
             yield return null;
         }
 
-      
         gunList[gunListPos].ammoCurrent = gunList[gunListPos].ammoMax;
-
-        gunList[gunListPos].ammoCurrent = gunList[gunListPos].ammoMax;
-        currentAmmo = gunList[gunListPos].ammoCurrent;  
+        currentAmmo = gunList[gunListPos].ammoCurrent;
         gamemanager.instance.updateAmmo(currentAmmo, maxAmmo);
 
         isReloading = false;
     }
-    //End of Delvin's Addition//
 }

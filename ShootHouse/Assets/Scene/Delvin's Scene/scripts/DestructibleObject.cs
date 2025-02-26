@@ -3,15 +3,15 @@ using UnityEngine;
 public class NewMonoBehaviourScript : MonoBehaviour, IDamage
 {
     [Header("Health Settings")]
-    public float health; 
+    public float health;
+
     [Header("Spawn Settings")]
     public GameObject[] spawnMaterials;
-    public int spawnAmount ;
-    public Vector2 spawnForceRange = new Vector2(2f, 5f); // Random force range for spawning
+    public int spawnAmount;
+    public float spawnHeightOffset = 1.5f; // Height offset for spawning above the ground
 
     [Header("Destruction Settings")]
-    public GameObject destroyedEffect; //particle effect on destruction
-  
+    public GameObject destroyedEffect; // Particle effect on destruction
 
     public void takeDamage(float damage)
     {
@@ -31,24 +31,15 @@ public class NewMonoBehaviourScript : MonoBehaviour, IDamage
             Instantiate(destroyedEffect, transform.position, Quaternion.identity);
         }
 
-        // Spawn materials
+        // Spawn materials above the object's position
         if (spawnMaterials.Length > 0)
         {
             for (int i = 0; i < spawnAmount; i++)
             {
-                GameObject material = Instantiate(spawnMaterials[Random.Range(0, spawnMaterials.Length)],
-                                                 transform.position + Random.insideUnitSphere * 0.5f,
-                                                 Quaternion.identity);
-
-                Rigidbody rb = material.GetComponent<Rigidbody>();
-                if (rb)
-                {
-                    Vector3 randomForce = Random.insideUnitSphere * Random.Range(spawnForceRange.x, spawnForceRange.y);
-                    rb.AddForce(randomForce, ForceMode.Impulse);
-                }
+                Vector3 spawnPosition = transform.position + new Vector3(0, spawnHeightOffset, 0);
+                Instantiate(spawnMaterials[Random.Range(0, spawnMaterials.Length)], spawnPosition, Quaternion.identity);
             }
         }
-
 
         Destroy(gameObject);
     }

@@ -1,17 +1,22 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Scores : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI currentRunText;
     [SerializeField] public TextMeshProUGUI playerMedal;
+    [SerializeField] public Image medalIcon;
+
     [SerializeField] float goldTime = 40f;
     [SerializeField] float silverTime = 60f;
     [SerializeField] float bronzeTime = 80f;
 
-    private Timer timer; 
+    private Timer timer;
 
-
+    [SerializeField] private Sprite goldIcon;
+    [SerializeField] private Sprite silverIcon;
+    [SerializeField] private Sprite bronzeIcon;
 
     void Start()
     {
@@ -30,17 +35,27 @@ public class Scores : MonoBehaviour
             int seconds = Mathf.FloorToInt(currentTime % 60); // Get seconds from current time
             
             currentRunText.text = $"Current Run: {minutes:00}:{seconds:00}";
-            playerMedal.text = GetMedal(currentTime);
+            UpdateMedalDisplay(currentTime);
 
         }
     }
-    private string GetMedal(float time)
+
+    private void UpdateMedalDisplay(float time)
     {
         if (time <= goldTime)
-            return "Gold Medal";
-        else if (time <= silverTime && time > goldTime )
-            return "Silver Medal";
-        else 
-            return "Bronze Medal";
+        {
+            playerMedal.text = "Gold";
+            medalIcon.sprite = goldIcon;
+        }
+        else if (time <= silverTime && time > goldTime)
+        {
+            playerMedal.text = "Silver";
+            medalIcon.sprite = silverIcon;
+        }
+        else
+        {
+            playerMedal.text = "Bronze";
+            medalIcon.sprite = bronzeIcon;
+        }
     }
 }

@@ -152,7 +152,7 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
         {
             if (moveDir.magnitude > .3f && !isPlayerSteps)
             {
-                StartCoroutine(playSteps());
+                //StartCoroutine(playSteps());
             }
             jumpCount = 0;
             playerVel = Vector3.zero;

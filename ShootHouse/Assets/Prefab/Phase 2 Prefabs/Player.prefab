@@ -816,7 +816,7 @@ MonoBehaviour:
   staminaBar: {fileID: 0}
   maxDashCount: 5
   dashSpeed: 10
-  dashDuration: 0.3
+  dashDuration: 1
   aud: {fileID: 5928355708036221593}
   audSteps:
   - {fileID: 8300000, guid: d923b80f1988a734080e8653372d6cbb, type: 3}

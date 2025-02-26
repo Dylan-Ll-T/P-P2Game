@@ -4,6 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class ButtonFunctions : MonoBehaviour 
 {
+    // Delvin's Additions
+    public void startGame()
+    {
+        gamemanager.instance.startGame();
+        gamemanager.instance.stateUnpause();
+    }
+    // End of Delvin's Additions
     public void resume()
     {
         gamemanager.instance.stateUnpause();

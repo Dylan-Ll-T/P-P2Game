@@ -9,6 +9,7 @@ public class gamemanager : MonoBehaviour
     public static gamemanager instance;
 
     [SerializeField] GameObject menuActive;
+    [SerializeField] GameObject startMenu;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
@@ -37,6 +38,21 @@ public class gamemanager : MonoBehaviour
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
+
+            // Start game paused
+            isPause = true;
+            Time.timeScale = 0;
+
+            // Make cursor visible and unlocked so player can click Start
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
+
+            // Activate Start Menu
+            if (startMenu != null)
+        {
+            startMenu.SetActive(true);
+        }
     }
 
     // Update is called once per frame
@@ -58,7 +74,20 @@ public class gamemanager : MonoBehaviour
 
         }
     }
+   // Delvin's Additions
+    public void startGame()
+    {
+      
+        Debug.Log("Game Started!"); // Check if this logs in the Console
 
+        // Hide the start menu
+        if (startMenu != null)
+        {
+            startMenu.SetActive(false);
+
+        }
+    }
+    // End of Delvin's Additions
     public void statePause()
     {
         isPause = !isPause;

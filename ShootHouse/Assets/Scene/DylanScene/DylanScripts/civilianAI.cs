@@ -40,12 +40,12 @@ public class civilianAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        float agentSpeed = agent.velocity.normalized.magnitude;
-        float animCurSpeed = anim.GetFloat("Speed");
+        //float agentSpeed = agent.velocity.normalized.magnitude;
+        //float animCurSpeed = anim.GetFloat("Speed");
 
 
 
-        anim.SetFloat("Speed", Mathf.MoveTowards(animCurSpeed, agentSpeed, Time.deltaTime * animTransSpeed));
+        //anim.SetFloat("Speed", Mathf.MoveTowards(animCurSpeed, agentSpeed, Time.deltaTime * animTransSpeed));
 
         if (agent.remainingDistance < 0.01f)
             roamTimer += Time.deltaTime;
@@ -98,8 +98,12 @@ public class civilianAI : MonoBehaviour, IDamage
         StartCoroutine(flashRed());
         if (enemyHealth <= 0)
         {
-            gamemanager.instance.updateGameGoal(-1);
+            //Delvins addition
+            Timer.instance.IncreaseTime(5);
+            //End
+
             Destroy(gameObject);
+            
         }
     }
 

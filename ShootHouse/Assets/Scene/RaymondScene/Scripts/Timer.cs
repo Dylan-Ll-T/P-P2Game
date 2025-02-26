@@ -24,7 +24,10 @@ public class Timer : MonoBehaviour
             timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
     }
-
+    public void IncreaseTime(float timeToAdd)
+    {
+        elapsedTime += timeToAdd;  // Increase the elapsed time by the specified amount
+    }
     public float GetElapsedTime()
     {
         return elapsedTime;

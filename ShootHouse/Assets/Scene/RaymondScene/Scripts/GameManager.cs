@@ -22,6 +22,8 @@ public class gamemanager : MonoBehaviour
     public bool isPause;
     public GameObject player;
     public playerController playerScript;
+    public Timer timer;
+    public Scores score;
 
     // Yong's Additon
     public Image dashBar;

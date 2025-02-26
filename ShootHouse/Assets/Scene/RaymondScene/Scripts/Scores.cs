@@ -11,6 +11,7 @@ public class Scores : MonoBehaviour
     [SerializeField] float goldTime = 40f;
     [SerializeField] float silverTime = 60f;
     [SerializeField] float bronzeTime = 80f;
+    public int currentTime;
 
     private Timer timer;
 
@@ -34,7 +35,7 @@ public class Scores : MonoBehaviour
         return;
     }
 
-    int currentTime = (int)timer.GetElapsedTime(); // Cast to int
+    currentTime = (int)timer.GetElapsedTime(); // Cast to int
     int minutes = currentTime / 60; // Get minutes
     int seconds = currentTime % 60; // Get seconds
 

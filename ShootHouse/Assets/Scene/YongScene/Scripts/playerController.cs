@@ -8,7 +8,7 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
     [Header("Movement Settings")]
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
-    [SerializeField] float HP;
+    public float HP;
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpSpeed;

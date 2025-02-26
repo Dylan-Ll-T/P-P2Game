@@ -69,7 +69,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void checkRoam()
     {
-        if (roamTimer > roamPauseTime && agent.remainingDistance < 0.01f)
+        if (roamTimer > roamPauseTime && agent.remainingDistance < .01f || gamemanager.instance.playerScript.HP <= 0f)
         {
             roam();
         }
@@ -111,10 +111,12 @@ public class EnemyAI : MonoBehaviour, IDamage
                 {
                     faceTarget();
                 }
+                agent.stoppingDistance = stoppingDistOrig;
 
                 return true;
             }
         }
+        agent.stoppingDistance = 0;
         return false;
     }
 

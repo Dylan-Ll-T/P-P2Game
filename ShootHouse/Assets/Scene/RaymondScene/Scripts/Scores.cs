@@ -8,9 +8,9 @@ public class Scores : MonoBehaviour
     [SerializeField] public TextMeshProUGUI playerMedal;
     [SerializeField] public Image medalIcon;
 
-    [SerializeField] float goldTime = 40f;
-    [SerializeField] float silverTime = 60f;
-    [SerializeField] float bronzeTime = 80f;
+    [SerializeField] float goldTime = 70f;
+    [SerializeField] float silverTime = 100f;
+    [SerializeField] float bronzeTime = 120f;
     public int currentTime;
 
     private Timer timer;

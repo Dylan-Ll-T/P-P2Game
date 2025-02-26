@@ -60,7 +60,11 @@ public class gamemanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ShowMap();
+        if (Input.GetButtonDown("ShowMap"))
+        {
+            ShowMap();
+        }
+
         if (Input.GetButtonDown("Cancel"))
         {
             if (menuActive == null)
@@ -143,21 +147,22 @@ public class gamemanager : MonoBehaviour
     //Hemant's Addttion
     public void ShowMap()
     {
-        if (Input.GetButtonDown("ShowMap"))
+        if (menuActive == null) // If there's no active menu, open the map
         {
-            if (menuActive == null)
+            statePause();
+            menuActive = FullMap;
+            menuActive.SetActive(true);
+        }
+        else if (menuActive == FullMap) // If the active menu is the map, close it
+        {
+            stateUnpause();
+            if (menuActive != null)
             {
-                statePause();
-                menuActive = FullMap;
-                menuActive.SetActive(true);
-            }
-            else if (menuActive == FullMap)
-            {
-                stateUnpause();
                 menuActive.SetActive(false);
                 menuActive = null;
             }
         }
+
     }
 
 

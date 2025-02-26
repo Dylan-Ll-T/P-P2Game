@@ -281,7 +281,7 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
             {
                 endDamage *= headshotMult;
                 headshot = true;
-                aud.PlayOneShot(headShot, .2f);
+                aud.PlayOneShot(headShot, .08f);
             }
             //End of Dylan's Additions
 

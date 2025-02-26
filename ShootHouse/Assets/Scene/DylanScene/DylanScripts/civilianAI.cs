@@ -98,7 +98,6 @@ public class civilianAI : MonoBehaviour, IDamage
         StartCoroutine(flashRed());
         if (enemyHealth <= 0)
         {
-            gamemanager.instance.updateGameGoal(-1);
             if(Timer.instance != null)
             {
                 Timer.instance.elapsedTime += 5f;

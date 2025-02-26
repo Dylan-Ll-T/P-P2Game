@@ -30,32 +30,34 @@ public class Scores : MonoBehaviour
     {
         if (timer != null)
         {
-            float currentTime = timer.GetElapsedTime(); // Get the current run time from the Timer script
-            int minutes = Mathf.FloorToInt(currentTime / 60); // Get minutes from current time
-            int seconds = Mathf.FloorToInt(currentTime % 60); // Get seconds from current time
-            
-            currentRunText.text = $"Current Run: {minutes:00}:{seconds:00}";
-            UpdateMedalDisplay(currentTime);
+            int currentTime = (int)timer.GetElapsedTime(); // Cast to int
+            int minutes = currentTime / 60; // Get minutes
+            int seconds = currentTime % 60; // Get seconds
 
+            currentRunText.text = $"Current Run: {minutes:00}:{seconds:00}";
+            UpdateMedalDisplay(currentTime); // Pass as int
         }
     }
 
-    private void UpdateMedalDisplay(float time)
+    private void UpdateMedalDisplay(int time)
     {
         if (time <= goldTime)
         {
             playerMedal.text = "Gold";
             medalIcon.sprite = goldIcon;
+            //Debug.Log(time + " Gold " + goldTime);
         }
         else if (time <= silverTime && time > goldTime)
         {
             playerMedal.text = "Silver";
             medalIcon.sprite = silverIcon;
+            //Debug.Log(time + " Silver " + silverTime);
         }
         else
         {
             playerMedal.text = "Bronze";
             medalIcon.sprite = bronzeIcon;
+            //Debug.Log(time + " Bronze " + bronzeTime);
         }
     }
 }

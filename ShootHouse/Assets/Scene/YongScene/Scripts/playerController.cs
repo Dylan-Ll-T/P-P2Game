@@ -17,6 +17,7 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
 
     //Delvin's Addition//
     // Muzzle Flash Quad (GameObjects)
+    [Header("Muzzle Flash")]
     private GameObject hipMuzzleFlashQuad;
     private GameObject aimMuzzleFlashQuad;
 
@@ -63,8 +64,14 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
     [SerializeField] float dashSpeed;
     [SerializeField] float dashDuration;
 
-    public AudioSource audioSource;
-
+    [Header("Audio Settings")]
+    [SerializeField] AudioSource aud;
+    [Range(0, 1)][SerializeField] AudioClip[] audSteps;
+    [Range(0, 1)][SerializeField] float audStepsVol;
+    [Range(0, 1)][SerializeField] AudioClip[] audHurt;
+    [Range(0, 1)][SerializeField] float audHurtVol;
+    [Range(0, 1)][SerializeField] AudioClip[] audJump;
+    [Range(0, 1)][SerializeField] float audJumpVol;
 
     // Private variables
     int jumpCount;
@@ -87,6 +94,7 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
 
     private int currentDashCount;
     private bool isDashing = false;
+    bool isPlayerSteps;
 
     void Start()
     {
@@ -138,11 +146,14 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
 
 
     void movement()
-    {
-        
+    {    
 
         if (controller.isGrounded)
         {
+            if (moveDir.magnitude > .3f && !isPlayerSteps)
+            {
+                StartCoroutine(playSteps());
+            }
             jumpCount = 0;
             playerVel = Vector3.zero;
         }
@@ -203,19 +214,35 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
         if (Input.GetButtonDown("Sprint"))
         {
             speed *= sprintMod;
+            isPlayerSteps = true;
         }
         else if (Input.GetButtonUp("Sprint"))
         {
             speed /= sprintMod;
+            isPlayerSteps = false;
         }
     }
+    IEnumerator playSteps()
+    {
+        isPlayerSteps = true;
+        aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
 
+        if (!isSprinting)
+        {
+            yield return new WaitForSeconds(.5f);
+
+        }
+        else
+            yield return new WaitForSeconds(0.3f);
+        isPlayerSteps = false;
+    }
     void jump()
     {
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
             jumpCount++;
             playerVel.y = jumpSpeed;
+            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
 
             if (isCrouching)
             {
@@ -287,7 +314,7 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
     {
         if (gunList[gunListPos] && gunList[gunListPos].shootSound != null)
         {
-            audioSource.PlayOneShot(gunList[gunListPos].shootSound, gunList[gunListPos].shootVol);
+            aud.PlayOneShot(gunList[gunListPos].shootSound, gunList[gunListPos].shootVol);
         }
         yield return null;
     }
@@ -436,6 +463,7 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
 
         updatePlayerUI();
         StartCoroutine(flashDamageScreen());
+        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
 
         if (HP <= 0)
         {
@@ -610,7 +638,7 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
     
         if (gunList[gunListPos].reloadSound != null)
         {
-            audioSource.PlayOneShot(gunList[gunListPos].reloadSound, gunList[gunListPos].reloadVol);
+            aud.PlayOneShot(gunList[gunListPos].reloadSound, gunList[gunListPos].reloadVol);
         }
 
     

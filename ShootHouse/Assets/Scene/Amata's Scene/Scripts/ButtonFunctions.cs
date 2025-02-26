@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,5 +23,11 @@ public class ButtonFunctions : MonoBehaviour
             Application.Quit();
     #endif
 
+    }
+
+    public void loadLevel(int level)
+    {
+        SceneManager.LoadScene(level);
+        gamemanager.instance.stateUnpause();
     }
 }

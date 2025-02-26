@@ -20,7 +20,7 @@ public class PickUp : MonoBehaviour
 
         if (pick != null)
         {  
-            pickup.PlayOneShot(pickupAud,10);
+            pickup.PlayOneShot(pickupAud,5);
             pick.GetGunStats(gun);
             Destroy(gameObject);
           

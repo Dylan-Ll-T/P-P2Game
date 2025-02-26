@@ -90,6 +90,8 @@ MonoBehaviour:
   animTransSpeed: 10
   faceTargetSpeed: 10
   FOV: 90
+  roamPauseTime: 3
+  roamDist: 15
   bullet: {fileID: 1541718661690039945, guid: aba4f9c991b3da54fbd5480f7490503d, type: 3}
   shootPos: {fileID: 8479428484666262104}
   shootRate: 0.4

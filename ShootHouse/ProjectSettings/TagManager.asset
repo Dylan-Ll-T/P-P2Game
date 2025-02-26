@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
+  - EnemyHead
   layers:
   - Default
   - TransparentFX
@@ -15,8 +16,8 @@ TagManager:
   - Enemy Layer
   - wall
   - minimap icons
-  - 
-  - 
+  - floor
+  - Weapons
   - 
   - 
   - 

@@ -1691,6 +1691,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3503886645283043673, guid: 775ffabdef52cfa4d910e3958b4890fe, type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3503886645283043673, guid: 775ffabdef52cfa4d910e3958b4890fe, type: 3}
       propertyPath: audJumpVol
       value: 0.069
       objectReference: {fileID: 0}

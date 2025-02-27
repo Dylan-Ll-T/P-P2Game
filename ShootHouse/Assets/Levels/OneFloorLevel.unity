@@ -2371,7 +2371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 890562c59ada27043bc506d3e4ce7104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healAmount: 10
+  healAmount: 5
 --- !u!23 &4051755607633508110
 MeshRenderer:
   m_ObjectHideFlags: 0

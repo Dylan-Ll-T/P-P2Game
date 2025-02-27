@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1917284484142616853, guid: 8927088be090fcb488b7b2c982677038, type: 3}
+      propertyPath: enemyHealth
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2217145108395067726, guid: 8927088be090fcb488b7b2c982677038, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.1
@@ -303,6 +307,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 398950158281007369, guid: c81a3fae67c09444db95e3c84a5799ce, type: 3}
+      propertyPath: enemyHealth
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 476621277986623839, guid: c81a3fae67c09444db95e3c84a5799ce, type: 3}
       propertyPath: m_Name
       value: Enemy_Soldier
@@ -518,6 +526,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8864765686375844226, guid: 1544d15bd9b933a4f84d6a6d682951df, type: 3}
+      propertyPath: enemyHealth
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -688,6 +700,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Soldier (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6405548301024645030, guid: e52a30ac48db54641acb940f74eac829, type: 3}
+      propertyPath: enemyHealth
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -741,6 +757,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3962989567144839163, guid: d6b96ea3622ab3d499f4e58eb2ceacfa, type: 3}
+      propertyPath: enemyHealth
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5072006813428191208, guid: d6b96ea3622ab3d499f4e58eb2ceacfa, type: 3}
       propertyPath: m_Name
       value: Enemy_Soldier (10)
@@ -758,6 +778,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2273000418322530212, guid: 4f8c5247606c96c4293598f38deaf9f8, type: 3}
+      propertyPath: enemyHealth
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8398918747172282619, guid: 4f8c5247606c96c4293598f38deaf9f8, type: 3}
       propertyPath: m_Name
       value: Enemy_Soldier (1)
@@ -869,6 +893,10 @@ PrefabInstance:
     - target: {fileID: 2117706493204617900, guid: 851419e58fc5dbb47ba158681ff629c1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540283506681030033, guid: 851419e58fc5dbb47ba158681ff629c1, type: 3}
+      propertyPath: enemyHealth
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8242815820705929322, guid: 851419e58fc5dbb47ba158681ff629c1, type: 3}
       propertyPath: m_Name
@@ -1173,6 +1201,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Soldier (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 4471462991463712458, guid: c472d79100a8c8e4cb6baf9827bb1825, type: 3}
+      propertyPath: enemyHealth
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7138403897539444136, guid: c472d79100a8c8e4cb6baf9827bb1825, type: 3}
       propertyPath: m_LocalPosition.x
       value: -89.2
@@ -1343,6 +1375,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9126639866510845081, guid: 30806369ec0121a43b30c1a2eebb66c7, type: 3}
+      propertyPath: enemyHealth
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1395,6 +1431,10 @@ PrefabInstance:
     - target: {fileID: 271082780433309570, guid: 79ac121fc01a1a047aae4b4f455a8e9c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838675841149366242, guid: 79ac121fc01a1a047aae4b4f455a8e9c, type: 3}
+      propertyPath: enemyHealth
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3934012445421780457, guid: 79ac121fc01a1a047aae4b4f455a8e9c, type: 3}
       propertyPath: m_Name
@@ -1510,6 +1550,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3802680427372512887, guid: 504fbecfe38929146933dd2f7326be4a, type: 3}
+      propertyPath: enemyHealth
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6291667249158429703, guid: 504fbecfe38929146933dd2f7326be4a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -71.5
@@ -1679,6 +1723,10 @@ PrefabInstance:
     - target: {fileID: 1080924385016669624, guid: 775ffabdef52cfa4d910e3958b4890fe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3503886645283043673, guid: 775ffabdef52cfa4d910e3958b4890fe, type: 3}
+      propertyPath: HP
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3503886645283043673, guid: 775ffabdef52cfa4d910e3958b4890fe, type: 3}
       propertyPath: staminaBar
@@ -1923,6 +1971,10 @@ PrefabInstance:
     - target: {fileID: 2363897383421687368, guid: 7327faa36a1f73349ba83d6a5a9da9c3, type: 3}
       propertyPath: m_Name
       value: Enemy_Soldier (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7716098828058594652, guid: 7327faa36a1f73349ba83d6a5a9da9c3, type: 3}
+      propertyPath: enemyHealth
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -896,7 +896,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4198758736246049378}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.5296571, z: -0, w: 0.8482118}
+  m_LocalRotation: {x: 0, y: 0.52966017, z: 0, w: 0.84821}
   m_LocalPosition: {x: 76.96407, y: 2.08, z: 44.95626}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -921,8 +921,8 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
-  HP: 50
-  speed: 5
+  HP: 15
+  speed: 8
   sprintMod: 2
   jumpSpeed: 12
   jumpMax: 1
@@ -938,18 +938,18 @@ MonoBehaviour:
   shootDamage: 0
   shootRate: 0
   shootDist: 0
-  headshotMult: 2
+  headshotMult: 5
   gunModel: {fileID: 626407811881819006}
   gunList: []
   muzzleFlashPos: {fileID: 35211527095556962}
-  maxStamina: 25
+  maxStamina: 20
   staminaDepleteRate: 6
   staminaRegenRate: 6
   staminaRegenDelay: 1
   staminaBar: {fileID: 0}
-  maxDashCount: 5
-  dashSpeed: 10
-  dashDuration: 1
+  maxDashCount: 3
+  dashSpeed: 30
+  dashDuration: 0.3
   aud: {fileID: 6037079474373372495}
   audSteps:
   - {fileID: 8300000, guid: 9158df1f5669d944ea554a0dec926834, type: 3}

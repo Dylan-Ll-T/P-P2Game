@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunName: Shotgun
   model: {fileID: 5480246936478360982, guid: 93269f91b0f4fb14da5c42c5c674bc52, type: 3}
-  shootDamage: 3
+  shootDamage: 2
   shootDistance: 50
   shootRate: 0.5
-  ammoCurrent: 6
+  ammoCurrent: 1
   ammoMax: 6
   hitEffect: {fileID: 3836854531972415411, guid: 4790206eadc817b4196e071640e653af, type: 3}
   shootSound: {fileID: 8300000, guid: ad32d5684ee38c44ba70cbed20b64a06, type: 3}
-  shootVol: 0.3
+  shootVol: 0.2
   reloadSound: {fileID: 8300000, guid: 3cf68aa920583b14eb500f1ce4ab439d, type: 3}
-  reloadVol: 0.3
+  reloadVol: 0.2
   hipPos: {fileID: 6860043389429378590, guid: c7cd138c76e937e4e95a84966222bb08, type: 3}
   aimPos: {fileID: 1503055238594739716, guid: 6496f4d6a136be8438dbef3be8b2751b, type: 3}
   aimSpeed: 20

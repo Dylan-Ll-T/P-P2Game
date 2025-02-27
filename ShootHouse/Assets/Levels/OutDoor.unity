@@ -1685,6 +1685,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3503886645283043673, guid: 775ffabdef52cfa4d910e3958b4890fe, type: 3}
+<<<<<<< HEAD
+=======
+      propertyPath: HP
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3503886645283043673, guid: 775ffabdef52cfa4d910e3958b4890fe, type: 3}
+      propertyPath: audJumpVol
+      value: 0.069
+      objectReference: {fileID: 0}
+    - target: {fileID: 3503886645283043673, guid: 775ffabdef52cfa4d910e3958b4890fe, type: 3}
+>>>>>>> parent of 002e240 (Final)
       propertyPath: staminaBar
       value: 
       objectReference: {fileID: 7652150567303024238}

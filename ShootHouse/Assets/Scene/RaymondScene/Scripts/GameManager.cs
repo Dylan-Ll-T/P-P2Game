@@ -13,30 +13,30 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-    [SerializeField] GameObject FullMap;
     [SerializeField] TMP_Text goalCountText;
-    [SerializeField] TMP_Text Ammo;
+    [SerializeField] GameObject menuLeaderBoard;
+
 
     public Image playerHPBar;
     public GameObject playerDamageScreen;
     public bool isPause;
     public GameObject player;
     public playerController playerScript;
+<<<<<<< HEAD
     public Timer timer;
     public Scores score;
 
+=======
+>>>>>>> parent of 018a346 (Scene and folder changes)
     // Yong's Additon
     public Image dashBar;
     // End 
 
     int goalCount;
-    GameObject[] enemies;
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
@@ -60,11 +60,14 @@ public class gamemanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+<<<<<<< HEAD
         if (Input.GetButtonDown("ShowMap"))
         {
             ShowMap();
         }
 
+=======
+>>>>>>> parent of 018a346 (Scene and folder changes)
         if (Input.GetButtonDown("Cancel"))
         {
             if (menuActive == null)
@@ -122,11 +125,8 @@ public class gamemanager : MonoBehaviour
             statePause();
             menuActive = menuWin;
             menuActive.SetActive(true);
+  
         }
-    }
-    public void updateAmmo(int currentAmmo, int maxAmmo)
-    {
-        Ammo.text = currentAmmo.ToString() + " / " + maxAmmo.ToString();
     }
 
     public void youLose()
@@ -142,6 +142,7 @@ public class gamemanager : MonoBehaviour
             dashBar.fillAmount = (float)currentDashes / maxDashes;
     }
     // End
+<<<<<<< HEAD
 
 
     //Hemant's Addttion
@@ -189,4 +190,6 @@ public class gamemanager : MonoBehaviour
     }
     //End
 
+=======
+>>>>>>> parent of 018a346 (Scene and folder changes)
 }

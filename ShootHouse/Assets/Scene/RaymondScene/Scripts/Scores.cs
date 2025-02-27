@@ -8,9 +8,10 @@ public class Scores : MonoBehaviour
     [SerializeField] public TextMeshProUGUI playerMedal;
     [SerializeField] public Image medalIcon;
 
-    [SerializeField] float goldTime = 40f;
-    [SerializeField] float silverTime = 60f;
-    [SerializeField] float bronzeTime = 80f;
+    [SerializeField] float goldTime = 70f;
+    [SerializeField] float silverTime = 100f;
+    [SerializeField] float bronzeTime = 120f;
+    public int currentTime;
 
     private Timer timer;
 
@@ -26,18 +27,30 @@ public class Scores : MonoBehaviour
     
     }
 
-    void Update()
+  void Update()
+{
+    if (timer == null)
     {
-        if (timer != null)
-        {
-            int currentTime = (int)timer.GetElapsedTime(); // Cast to int
-            int minutes = currentTime / 60; // Get minutes
-            int seconds = currentTime % 60; // Get seconds
-
-            currentRunText.text = $"Current Run: {minutes:00}:{seconds:00}";
-            UpdateMedalDisplay(currentTime); // Pass as int
-        }
+        Debug.LogError("Timer is NULL! Make sure it is assigned.");
+        return;
     }
+
+    currentTime = (int)timer.GetElapsedTime(); // Cast to int
+    int minutes = currentTime / 60; // Get minutes
+    int seconds = currentTime % 60; // Get seconds
+
+    if (currentRunText == null)
+    {
+        Debug.LogError("currentRunText is NULL! Assign it in the Inspector.");
+    }
+    else
+    {
+        currentRunText.text = $"Current Run: {minutes:00}:{seconds:00}";
+    }
+
+    UpdateMedalDisplay(currentTime);
+}
+
 
     private void UpdateMedalDisplay(int time)
     {
@@ -53,7 +66,7 @@ public class Scores : MonoBehaviour
             medalIcon.sprite = silverIcon;
             //Debug.Log(time + " Silver " + silverTime);
         }
-        else
+        else if (time >= bronzeTime )
         {
             playerMedal.text = "Bronze";
             medalIcon.sprite = bronzeIcon;

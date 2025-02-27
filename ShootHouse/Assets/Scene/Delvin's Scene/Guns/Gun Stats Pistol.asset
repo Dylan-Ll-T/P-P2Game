@@ -15,15 +15,15 @@ MonoBehaviour:
   gunName: Pistol
   model: {fileID: 3519265640208350736, guid: 3a793df0a59d26449ad04e4ec7a38715, type: 3}
   shootDamage: 1
-  shootDistance: 100
+  shootDistance: 80
   shootRate: 0.3
-  ammoCurrent: 14
-  ammoMax: 14
+  ammoCurrent: 12
+  ammoMax: 12
   hitEffect: {fileID: 3836854531972415411, guid: 4790206eadc817b4196e071640e653af, type: 3}
   shootSound: {fileID: 8300000, guid: 4e1a8843ab2118b49b0c1a198c9e18ef, type: 3}
-  shootVol: 0.3
+  shootVol: 0.2
   reloadSound: {fileID: 8300000, guid: 3cf68aa920583b14eb500f1ce4ab439d, type: 3}
-  reloadVol: 0.3
+  reloadVol: 0.2
   hipPos: {fileID: 4739038180861631534, guid: 8fe892b6706f50b4484f7bc3d4516942, type: 3}
   aimPos: {fileID: 453069271183518949, guid: d835464a6c33284469d9c44c55d43ef8, type: 3}
   aimSpeed: 20

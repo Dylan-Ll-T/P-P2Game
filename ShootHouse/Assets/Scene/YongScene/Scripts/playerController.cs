@@ -8,7 +8,7 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
     [Header("Movement Settings")]
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
-    [SerializeField] float HP;
+    public float HP;
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpSpeed;
@@ -281,7 +281,7 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
             {
                 endDamage *= headshotMult;
                 headshot = true;
-                aud.PlayOneShot(headShot, .05f);
+                aud.PlayOneShot(headShot, .08f);
             }
             //End of Dylan's Additions
 
@@ -458,6 +458,12 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
     {
         if (staminaBar)
             staminaBar.fillAmount = currentStamina / maxStamina;
+    }
+
+    public void Heal(int amount)
+    {
+        HP = Mathf.Min(HP + amount, HPOrig); 
+        updatePlayerUI(); 
     }
 
     public void takeDamage(float amount)

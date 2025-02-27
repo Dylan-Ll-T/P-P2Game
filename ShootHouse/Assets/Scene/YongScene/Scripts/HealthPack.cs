@@ -6,11 +6,11 @@ public class HealthPack : MonoBehaviour, IPickUp
 
     public void OnPickup(GameObject player)
     {
-        IDamage damageable = player.GetComponent<IDamage>();
-        if (damageable != null)
+        playerController pc = player.GetComponent<playerController>();
+        if (pc != null)
         {
-            damageable.takeDamage(-healAmount);
-            Destroy(gameObject);
+            pc.Heal(healAmount); 
+            Destroy(gameObject); 
         }
     }
 
@@ -21,8 +21,7 @@ public class HealthPack : MonoBehaviour, IPickUp
             OnPickup(other.gameObject);
         }
     }
-
-    void IPickUp.GetGunStats(GunStats gun)
+    public void GetGunStats(GunStats gun)
     {
         throw new System.NotImplementedException();
     }

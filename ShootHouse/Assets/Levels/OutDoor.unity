@@ -1500,6 +1500,14 @@ PrefabInstance:
       propertyPath: 'spawnMaterials.Array.data[0]'
       value: 
       objectReference: {fileID: 4038039855650471632}
+    - target: {fileID: 4054641811219759452, guid: 4e0c4795001dacd4697b5ab782c274b0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.581
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054641811219759452, guid: 4e0c4795001dacd4697b5ab782c274b0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.499
+      objectReference: {fileID: 0}
     - target: {fileID: 4255712309940040834, guid: 4e0c4795001dacd4697b5ab782c274b0, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.905
@@ -1757,7 +1765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3503886645283043673, guid: 775ffabdef52cfa4d910e3958b4890fe, type: 3}
       propertyPath: HP
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3503886645283043673, guid: 775ffabdef52cfa4d910e3958b4890fe, type: 3}
       propertyPath: speed
@@ -1771,6 +1779,10 @@ PrefabInstance:
       propertyPath: staminaBar
       value: 
       objectReference: {fileID: 7652150567303024238}
+    - target: {fileID: 3503886645283043673, guid: 775ffabdef52cfa4d910e3958b4890fe, type: 3}
+      propertyPath: staminaRegenDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7841398996593272007, guid: 775ffabdef52cfa4d910e3958b4890fe, type: 3}
       propertyPath: m_Name
       value: Player

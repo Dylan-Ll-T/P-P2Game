@@ -921,8 +921,8 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
-  HP: 15
-  speed: 8
+  HP: 5
+  speed: 5
   sprintMod: 2
   jumpSpeed: 12
   jumpMax: 1
@@ -1660,7 +1660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31d341954e2e7741887433b5b35c11a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sens: 500
+  sens: 400
   lockVertMin: -90
   lockvertMax: 90
   invertY: 0

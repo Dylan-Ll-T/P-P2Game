@@ -460,6 +460,12 @@ public class playerController : MonoBehaviour, IDamage, IPickUp
             staminaBar.fillAmount = currentStamina / maxStamina;
     }
 
+    public void Heal(int amount)
+    {
+        HP = Mathf.Min(HP + amount, HPOrig); 
+        updatePlayerUI(); 
+    }
+
     public void takeDamage(float amount)
     {
         HP -= amount;

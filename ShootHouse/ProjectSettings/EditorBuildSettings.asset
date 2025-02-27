@@ -4,17 +4,6 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Levels/Latest.unity
-    guid: d8f0ddf80d3e78b48b63825aa4312d6c
-  - enabled: 1
-<<<<<<< HEAD
-    path: Assets/Levels/OutDoor.unity
-=======
-    path: Assets/Levels/OutDoor/OutDoor.unity
->>>>>>> parent of 018a346 (Scene and folder changes)
-    guid: 8eab8b57359854c47b317f105e70215b
-  m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_Scenes: []
+  m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
